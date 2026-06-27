@@ -334,7 +334,7 @@ a {
 }
 
 .section-lead,
-story-copy p,
+.story-copy p,
 .contact-panel p {
   color: var(--muted);
   font-size: clamp(1rem, 1.4vw, 1.2rem);
