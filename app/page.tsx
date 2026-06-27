@@ -130,7 +130,6 @@ export default function Home() {
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 900], [0, 120]);
 
-  // Track scroll for navbar appearance
   useEffect(() => {
     const unsub = scrollY.on("change", (v) => setScrolled(v > 10));
     return () => unsub();
@@ -138,73 +137,57 @@ export default function Home() {
 
   return (
     <>
-      {/* ── NAVBAR efferd hero-1 style ── */}
-      {/* ── efferd hero-1 header ── logo sx · links+CTA dx · h-14 · scroll-triggered ── */}
       <header
         className={[
           "fixed inset-x-0 top-0 z-50 w-full transition-all duration-300",
-          scrolled
+          scrolled || open
             ? "border-b border-white/20 bg-[#fffaf1]/95 shadow-[0_2px_20px_rgba(0,0,0,0.07)] backdrop-blur-sm"
             : "border-b border-transparent bg-transparent",
         ].join(" ")}
       >
-        <nav className="mx-auto flex h-14 w-full max-w-5xl items-center justify-between px-4">
-
-          {/* Logo — sx, inline, compatto */}
-          <a href="#home" aria-label="Masseria Dei Duchi home" className="flex shrink-0 items-center rounded-md p-1 transition-opacity hover:opacity-75">
+        <nav className="relative mx-auto flex h-16 w-[calc(100%-1rem)] max-w-7xl items-center justify-end overflow-visible rounded-none px-3 pl-[136px] sm:pl-[166px] md:h-20 md:px-5 md:pl-[188px] lg:pl-[214px]">
+          <a
+            href="#home"
+            aria-label="Masseria Dei Duchi home"
+            className="absolute left-2 top-1/2 z-10 block w-[118px] -translate-y-1/2 overflow-visible transition-opacity hover:opacity-90 sm:left-4 sm:w-[145px] lg:w-[172px] xl:w-[190px]"
+          >
             <img
-              src="/media/logo-masseria-biondi-cropped.png"
+              src="/media/logo-masseria-web.svg"
               alt="Masseria Dei Duchi"
-              className="h-9 w-auto object-contain sm:h-10"
+              className="block h-auto w-full object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.22)]"
             />
           </a>
 
-          {/* Desktop — links + [Scopri outline] [Vieni filled] — tutto dx */}
-          <div className="hidden items-center gap-0.5 md:flex">
+          <div className="hidden min-w-0 items-center justify-end gap-0.5 md:flex">
             {navItems.map(([label, href]) => (
               <a
                 key={label}
                 href={href}
                 className={[
-                  "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
+                  "rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors lg:px-3",
                   scrolled
                     ? "text-[#3f2a14]/80 hover:bg-[#f5ece0] hover:text-[#3f2a14]"
-                    : "text-white/80 hover:bg-white/10 hover:text-white",
+                    : "text-white/85 hover:bg-white/10 hover:text-white",
                 ].join(" ")}
               >
                 {label}
               </a>
             ))}
 
-            <span className={["mx-2 h-4 w-px", scrolled ? "bg-[#c8a97a]/40" : "bg-white/20"].join(" ")} aria-hidden />
+            <span className={["mx-2 h-4 w-px shrink-0", scrolled ? "bg-[#c8a97a]/40" : "bg-white/20"].join(" ")} aria-hidden />
 
-            {/* Ghost CTA */}
-            <a
-              href="#masseria"
-              className={[
-                "inline-flex h-8 items-center rounded-full border px-4 text-sm font-semibold transition hover:-translate-y-px",
-                scrolled
-                  ? "border-[#c8a97a]/60 text-[#3f2a14] hover:bg-[#f5ece0]"
-                  : "border-white/35 text-white hover:bg-white/10",
-              ].join(" ")}
-            >
-              Scopri
-            </a>
-
-            {/* Filled CTA */}
             <a
               href="#contatti"
-              className="ml-1 inline-flex h-8 items-center rounded-full bg-[#8b1a1a] px-4 text-sm font-semibold text-white transition hover:-translate-y-px hover:bg-[#6d1414]"
+              className="inline-flex h-9 shrink-0 items-center rounded-full bg-[#8b1a1a] px-4 text-sm font-semibold text-white transition hover:-translate-y-px hover:bg-[#6d1414]"
             >
               Vieni a trovarci
             </a>
           </div>
 
-          {/* Mobile burger */}
           <button
             className={[
-              "inline-flex h-9 w-9 items-center justify-center rounded-lg border transition md:hidden",
-              scrolled ? "border-[#c8a97a]/40 bg-white/80 text-[#3f2a14]" : "border-white/30 text-white",
+              "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition md:hidden",
+              scrolled || open ? "border-[#c8a97a]/40 bg-white/80 text-[#3f2a14]" : "border-white/30 text-white",
             ].join(" ")}
             aria-label={open ? "Chiudi menu" : "Apri menu"}
             onClick={() => setOpen(!open)}
@@ -213,7 +196,6 @@ export default function Home() {
           </button>
         </nav>
 
-        {/* Mobile drawer */}
         {open && (
           <motion.nav
             initial={{ opacity: 0, y: -8 }}
