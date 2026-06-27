@@ -1,0 +1,93 @@
+header > nav {
+  height: 76px !important;
+  overflow: visible !important;
+}
+
+header > nav > a[aria-label="Masseria Dei Duchi home"] {
+  transform: translateY(-50%) scale(1.3);
+  transform-origin: left center;
+  z-index: 10;
+  overflow: visible;
+  transition: transform 300ms ease-out, opacity 220ms ease-out;
+  will-change: transform;
+}
+
+header > nav > a[aria-label="Masseria Dei Duchi home"] img {
+  object-fit: contain;
+}
+
+@supports (animation-timeline: scroll()) {
+  header > nav > a[aria-label="Masseria Dei Duchi home"] {
+    animation: navbar-logo-shrink-mobile linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 160px;
+  }
+}
+
+@keyframes navbar-logo-shrink-mobile {
+  from {
+    transform: translateY(-50%) scale(1.3);
+  }
+
+  to {
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+@keyframes navbar-logo-shrink-tablet {
+  from {
+    transform: translateY(-50%) scale(1.6);
+  }
+
+  to {
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+@keyframes navbar-logo-shrink-desktop {
+  from {
+    transform: translateY(-50%) scale(2);
+  }
+
+  to {
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+@media (min-width: 641px) {
+  header > nav > a[aria-label="Masseria Dei Duchi home"] {
+    transform: translateY(-50%) scale(1.6);
+  }
+
+  @supports (animation-timeline: scroll()) {
+    header > nav > a[aria-label="Masseria Dei Duchi home"] {
+      animation-name: navbar-logo-shrink-tablet;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  header > nav {
+    height: 92px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  header > nav > a[aria-label="Masseria Dei Duchi home"] {
+    transform: translateY(-50%) scale(2);
+  }
+
+  @supports (animation-timeline: scroll()) {
+    header > nav > a[aria-label="Masseria Dei Duchi home"] {
+      animation-name: navbar-logo-shrink-desktop;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  header > nav > a[aria-label="Masseria Dei Duchi home"] {
+    animation: none !important;
+    transition: none !important;
+    transform: translateY(-50%) scale(1) !important;
+  }
+}
