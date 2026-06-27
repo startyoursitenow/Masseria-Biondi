@@ -3,6 +3,10 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true
   },
+  experimental: {
+    cpus: 1,
+    workerThreads: true
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
