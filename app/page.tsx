@@ -141,17 +141,42 @@ export default function Home() {
       {/* ── NAVBAR efferd hero-1 style ── */}
       <header
         className={[
-          "fixed inset-x-0 top-0 z-50 w-full transition-all duration-300",
+          "fixed inset-x-0 top-0 z-50 w-full transition-all duration-300 overflow-visible",
           scrolled
             ? "border-b border-white/20 bg-[#fffaf1]/95 shadow-[0_4px_24px_rgba(0,0,0,0.08)] backdrop-blur-sm"
             : "border-b border-transparent bg-transparent",
         ].join(" ")}
+        style={{ overflow: "visible" }}
       >
-        <nav className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-4 sm:px-6">
-          {/* Logo sx */}
-          <a href="#home" aria-label="Masseria Dei Duchi home" className="flex items-center rounded-md p-1 transition hover:opacity-80">
-            <img src="/media/logo-masseria-biondi-new.png" alt="Masseria Dei Duchi Faicchio BN" className="h-12 w-auto object-contain" />
+        <nav className="relative mx-auto flex h-20 w-full max-w-5xl items-center justify-between px-4 sm:px-6" style={{ overflow: "visible" }}>
+
+          {/* Logo flottante — esce sopra e sotto la navbar */}
+          <a
+            href="#home"
+            aria-label="Masseria Dei Duchi home"
+            className="absolute transition-opacity hover:opacity-80"
+            style={{
+              left: "clamp(24px, 4vw, 40px)",
+              top: "50%",
+              transform: "translateY(-50%)",
+              zIndex: 60,
+              filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.28)) drop-shadow(0 1px 4px rgba(0,0,0,0.18))",
+            }}
+          >
+            <img
+              src="/media/logo-masseria-biondi-cropped.png"
+              alt="Masseria Dei Duchi — Caseificio Artigianale Faicchio BN"
+              style={{
+                width: "clamp(130px, 14vw, 210px)",
+                height: "auto",
+                objectFit: "contain",
+                display: "block",
+              }}
+            />
           </a>
+
+          {/* Spacer per non sovrapporre logo */}
+          <div style={{ width: "clamp(150px, 16vw, 230px)" }} aria-hidden />
 
           {/* Desktop links + CTA — tutto a destra */}
           <div className="hidden items-center gap-0.5 lg:flex">
