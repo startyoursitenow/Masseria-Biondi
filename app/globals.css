@@ -92,35 +92,36 @@ a {
 }
 
 .nav-shell {
-  width: min(1500px, calc(100% - 32px));
-  min-height: 88px;
+  width: min(1320px, calc(100% - 32px));
+  min-height: 76px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(1rem, 2vw, 2rem);
-  margin: 1rem auto 0;
+  gap: clamp(0.8rem, 1.7vw, 1.6rem);
+  margin: 0.75rem auto 0;
   border: 1px solid rgba(176, 138, 74, 0.42);
-  border-radius: 28px;
+  border-radius: 22px;
   background: rgba(255, 250, 240, 0.92);
-  padding: 0.72rem clamp(0.9rem, 1.8vw, 1.45rem);
-  box-shadow: 0 18px 54px rgba(33, 23, 19, 0.14);
+  padding: 0.45rem clamp(0.78rem, 1.35vw, 1.15rem);
+  box-shadow: 0 14px 40px rgba(33, 23, 19, 0.13);
   backdrop-filter: blur(18px);
 }
 
 .brand-logo {
   min-width: 0;
-  min-height: 64px;
+  height: 56px;
   display: inline-flex;
   align-items: center;
-  flex: 0 1 300px;
+  flex: 0 0 auto;
   text-decoration: none;
+  overflow: hidden;
 }
 
 .brand-logo img {
   display: block;
-  width: clamp(240px, 19vw, 300px);
-  max-width: 100%;
-  height: auto;
+  width: auto;
+  max-width: min(340px, 30vw);
+  height: clamp(48px, 4vw, 56px);
   object-fit: contain;
 }
 
@@ -144,7 +145,7 @@ a {
   display: inline-flex;
   align-items: center;
   border-radius: 999px;
-  padding: 0.72rem clamp(0.65rem, 0.85vw, 0.95rem);
+  padding: 0.64rem clamp(0.55rem, 0.74vw, 0.85rem);
   color: var(--ink);
   font-size: 0.92rem;
   font-weight: 600;
@@ -161,7 +162,7 @@ a {
 .nav-cta,
 .mobile-nav-cta,
 .button-primary {
-  min-height: 48px;
+  min-height: 46px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -169,7 +170,7 @@ a {
   border: 1px solid rgba(176, 138, 74, 0.7);
   border-radius: 999px;
   background: var(--bordeaux);
-  padding: 0.85rem 1.25rem;
+  padding: 0.76rem 1.12rem;
   color: #fff;
   font-weight: 700;
   text-decoration: none;
@@ -333,7 +334,7 @@ a {
 }
 
 .section-lead,
-.story-copy p,
+story-copy p,
 .contact-panel p {
   color: var(--muted);
   font-size: clamp(1rem, 1.4vw, 1.2rem);
@@ -634,20 +635,22 @@ a {
 
 @media (max-width: 640px) {
   .nav-shell {
-    width: min(100% - 24px, 1500px);
-    min-height: 78px;
-    margin-top: 0.75rem;
-    border-radius: 22px;
-    padding: 0.65rem 0.75rem;
+    width: min(100% - 20px, 1320px);
+    min-height: 68px;
+    margin-top: 0.55rem;
+    border-radius: 18px;
+    padding: 0.42rem 0.65rem;
   }
 
   .brand-logo {
-    flex-basis: min(220px, calc(100vw - 104px));
-    min-height: 56px;
+    height: 44px;
+    max-width: calc(100vw - 96px);
   }
 
   .brand-logo img {
-    width: clamp(180px, 55vw, 220px);
+    width: auto;
+    max-width: calc(100vw - 104px);
+    height: clamp(38px, 10vw, 44px);
   }
 
   .hero-content {
