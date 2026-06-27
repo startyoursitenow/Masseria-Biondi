@@ -17,7 +17,7 @@ import {
   X
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const navItems = [
   ["Home", "#home"],
@@ -126,48 +126,104 @@ function Photo({ src, alt, className = "", priority = false }: { src: string; al
 
 export default function Home() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 900], [0, 120]);
 
+  // Track scroll for navbar appearance
+  useEffect(() => {
+    const unsub = scrollY.on("change", (v) => setScrolled(v > 10));
+    return () => unsub();
+  }, [scrollY]);
+
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50">
-        <div className="nav-shell">
-          <a href="#home" className="brand-logo" aria-label="Masseria Dei Duchi home">
-            <img src="/media/logo-masseria-web.svg" alt="Masseria Dei Duchi Faicchio BN" />
+      {/* ── NAVBAR efferd hero-1 style ── */}
+      <header
+        className={[
+          "fixed inset-x-0 top-0 z-50 w-full transition-all duration-300",
+          scrolled
+            ? "border-b border-white/20 bg-[#fffaf1]/95 shadow-[0_4px_24px_rgba(0,0,0,0.08)] backdrop-blur-sm"
+            : "border-b border-transparent bg-transparent",
+        ].join(" ")}
+      >
+        <nav className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-4 sm:px-6">
+          {/* Logo */}
+          <a href="#home" aria-label="Masseria Dei Duchi home" className="flex items-center gap-3 rounded-md p-1 transition hover:opacity-80">
+            <img src="/media/logo-masseria-web.svg" alt="Masseria Dei Duchi Faicchio BN" className="h-10 w-auto" />
           </a>
-          <nav className="desktop-nav hidden items-center gap-1 lg:flex" aria-label="Navigazione principale">
-            <div className="nav-links">
-              {navItems.map(([label, href]) => (
-                <a key={label} href={href} className="nav-link">
-                  {label}
-                </a>
-              ))}
-            </div>
-            <a href="#contatti" className="nav-cta">
-              Vieni a trovarci
-            </a>
-          </nav>
-          <button className="mobile-menu-button lg:hidden" aria-label={open ? "Chiudi menu" : "Apri menu"} onClick={() => setOpen(!open)}>
-            {open ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-        {open ? (
-          <motion.nav
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mx-5 rounded-2xl border border-white/30 bg-[#fffaf1]/95 p-3 shadow-2xl backdrop-blur lg:hidden"
-          >
+
+          {/* Desktop links */}
+          <div className="hidden items-center gap-0.5 lg:flex">
             {navItems.map(([label, href]) => (
-              <a key={label} href={href} className="mobile-nav-link" onClick={() => setOpen(false)}>
+              <a
+                key={label}
+                href={href}
+                className={[
+                  "rounded-md px-3 py-2 text-sm font-semibold transition",
+                  scrolled ? "text-[#3f2a14] hover:bg-[#f5ece0] hover:text-[#8b3a0a]" : "text-white/90 hover:bg-white/10 hover:text-white",
+                ].join(" ")}
+              >
                 {label}
               </a>
             ))}
-            <a href="#contatti" className="mobile-nav-cta" onClick={() => setOpen(false)}>
+          </div>
+
+          {/* Desktop CTA */}
+          <div className="hidden items-center gap-2 lg:flex">
+            <a
+              href="#contatti"
+              className={[
+                "inline-flex min-h-10 items-center gap-2 rounded-full border px-4 py-2 text-sm font-bold transition hover:-translate-y-0.5",
+                scrolled
+                  ? "border-[#c8a97a]/60 bg-white text-[#3f2a14] hover:bg-[#f5ece0]"
+                  : "border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20",
+              ].join(" ")}
+            >
+              Vieni a trovarci
+            </a>
+          </div>
+
+          {/* Mobile burger */}
+          <button
+            className={[
+              "inline-flex h-10 w-10 items-center justify-center rounded-lg border transition lg:hidden",
+              scrolled ? "border-[#c8a97a]/40 bg-white text-[#3f2a14]" : "border-white/30 bg-white/10 text-white",
+            ].join(" ")}
+            aria-label={open ? "Chiudi menu" : "Apri menu"}
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </nav>
+
+        {/* Mobile drawer */}
+        {open && (
+          <motion.nav
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+            className="mx-4 mt-1 rounded-2xl border border-[#c8a97a]/30 bg-[#fffaf1]/97 p-3 shadow-2xl backdrop-blur lg:hidden"
+          >
+            {navItems.map(([label, href]) => (
+              <a
+                key={label}
+                href={href}
+                className="block rounded-lg px-3 py-3 text-base font-semibold text-[#3f2a14] transition hover:bg-[#f5ece0]"
+                onClick={() => setOpen(false)}
+              >
+                {label}
+              </a>
+            ))}
+            <a
+              href="#contatti"
+              className="mt-2 flex items-center justify-center gap-2 rounded-full bg-[#8b3a0a] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#6d2d08]"
+              onClick={() => setOpen(false)}
+            >
               Vieni a trovarci
             </a>
           </motion.nav>
-        ) : null}
+        )}
       </header>
 
       <main id="home">
