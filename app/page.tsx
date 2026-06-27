@@ -148,12 +148,12 @@ export default function Home() {
         ].join(" ")}
       >
         <nav className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-4 sm:px-6">
-          {/* Logo */}
-          <a href="#home" aria-label="Masseria Dei Duchi home" className="flex items-center gap-3 rounded-md p-1 transition hover:opacity-80">
-            <img src="/media/logo-masseria-web.svg" alt="Masseria Dei Duchi Faicchio BN" className="h-10 w-auto" />
+          {/* Logo sx */}
+          <a href="#home" aria-label="Masseria Dei Duchi home" className="flex items-center rounded-md p-1 transition hover:opacity-80">
+            <img src="/media/logo-masseria-biondi-new.png" alt="Masseria Dei Duchi Faicchio BN" className="h-12 w-auto object-contain" />
           </a>
 
-          {/* Desktop links */}
+          {/* Desktop links + CTA — tutto a destra */}
           <div className="hidden items-center gap-0.5 lg:flex">
             {navItems.map(([label, href]) => (
               <a
@@ -167,14 +167,10 @@ export default function Home() {
                 {label}
               </a>
             ))}
-          </div>
-
-          {/* Desktop CTA */}
-          <div className="hidden items-center gap-2 lg:flex">
             <a
               href="#contatti"
               className={[
-                "inline-flex min-h-10 items-center gap-2 rounded-full border px-4 py-2 text-sm font-bold transition hover:-translate-y-0.5",
+                "ml-3 inline-flex min-h-10 items-center gap-2 rounded-full border px-4 py-2 text-sm font-bold transition hover:-translate-y-0.5",
                 scrolled
                   ? "border-[#c8a97a]/60 bg-white text-[#3f2a14] hover:bg-[#f5ece0]"
                   : "border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20",
