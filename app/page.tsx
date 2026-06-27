@@ -139,67 +139,62 @@ export default function Home() {
   return (
     <>
       {/* ── NAVBAR efferd hero-1 style ── */}
+      {/* ── efferd hero-1 header ── logo sx · links+CTA dx · h-14 · scroll-triggered ── */}
       <header
         className={[
-          "fixed inset-x-0 top-0 z-50 w-full transition-all duration-300 overflow-visible",
+          "fixed inset-x-0 top-0 z-50 w-full transition-all duration-300",
           scrolled
-            ? "border-b border-white/20 bg-[#fffaf1]/95 shadow-[0_4px_24px_rgba(0,0,0,0.08)] backdrop-blur-sm"
+            ? "border-b border-white/20 bg-[#fffaf1]/95 shadow-[0_2px_20px_rgba(0,0,0,0.07)] backdrop-blur-sm"
             : "border-b border-transparent bg-transparent",
         ].join(" ")}
-        style={{ overflow: "visible" }}
       >
-        <nav className="relative mx-auto flex h-20 w-full max-w-5xl items-center justify-between px-4 sm:px-6" style={{ overflow: "visible" }}>
+        <nav className="mx-auto flex h-14 w-full max-w-5xl items-center justify-between px-4">
 
-          {/* Logo flottante — esce sopra e sotto la navbar */}
-          <a
-            href="#home"
-            aria-label="Masseria Dei Duchi home"
-            className="absolute transition-opacity hover:opacity-80"
-            style={{
-              left: "clamp(24px, 4vw, 40px)",
-              top: "50%",
-              transform: "translateY(-50%)",
-              zIndex: 60,
-              filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.28)) drop-shadow(0 1px 4px rgba(0,0,0,0.18))",
-            }}
-          >
+          {/* Logo — sx, inline, compatto */}
+          <a href="#home" aria-label="Masseria Dei Duchi home" className="flex shrink-0 items-center rounded-md p-1 transition-opacity hover:opacity-75">
             <img
               src="/media/logo-masseria-biondi-cropped.png"
-              alt="Masseria Dei Duchi — Caseificio Artigianale Faicchio BN"
-              style={{
-                width: "clamp(130px, 14vw, 210px)",
-                height: "auto",
-                objectFit: "contain",
-                display: "block",
-              }}
+              alt="Masseria Dei Duchi"
+              className="h-9 w-auto object-contain sm:h-10"
             />
           </a>
 
-          {/* Spacer per non sovrapporre logo */}
-          <div style={{ width: "clamp(150px, 16vw, 230px)" }} aria-hidden />
-
-          {/* Desktop links + CTA — tutto a destra */}
-          <div className="hidden items-center gap-0.5 lg:flex">
+          {/* Desktop — links + [Scopri outline] [Vieni filled] — tutto dx */}
+          <div className="hidden items-center gap-0.5 md:flex">
             {navItems.map(([label, href]) => (
               <a
                 key={label}
                 href={href}
                 className={[
-                  "rounded-md px-3 py-2 text-sm font-semibold transition",
-                  scrolled ? "text-[#3f2a14] hover:bg-[#f5ece0] hover:text-[#8b3a0a]" : "text-white/90 hover:bg-white/10 hover:text-white",
+                  "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
+                  scrolled
+                    ? "text-[#3f2a14]/80 hover:bg-[#f5ece0] hover:text-[#3f2a14]"
+                    : "text-white/80 hover:bg-white/10 hover:text-white",
                 ].join(" ")}
               >
                 {label}
               </a>
             ))}
+
+            <span className={["mx-2 h-4 w-px", scrolled ? "bg-[#c8a97a]/40" : "bg-white/20"].join(" ")} aria-hidden />
+
+            {/* Ghost CTA */}
+            <a
+              href="#masseria"
+              className={[
+                "inline-flex h-8 items-center rounded-full border px-4 text-sm font-semibold transition hover:-translate-y-px",
+                scrolled
+                  ? "border-[#c8a97a]/60 text-[#3f2a14] hover:bg-[#f5ece0]"
+                  : "border-white/35 text-white hover:bg-white/10",
+              ].join(" ")}
+            >
+              Scopri
+            </a>
+
+            {/* Filled CTA */}
             <a
               href="#contatti"
-              className={[
-                "ml-3 inline-flex min-h-10 items-center gap-2 rounded-full border px-4 py-2 text-sm font-bold transition hover:-translate-y-0.5",
-                scrolled
-                  ? "border-[#c8a97a]/60 bg-white text-[#3f2a14] hover:bg-[#f5ece0]"
-                  : "border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20",
-              ].join(" ")}
+              className="ml-1 inline-flex h-8 items-center rounded-full bg-[#8b1a1a] px-4 text-sm font-semibold text-white transition hover:-translate-y-px hover:bg-[#6d1414]"
             >
               Vieni a trovarci
             </a>
@@ -208,13 +203,13 @@ export default function Home() {
           {/* Mobile burger */}
           <button
             className={[
-              "inline-flex h-10 w-10 items-center justify-center rounded-lg border transition lg:hidden",
-              scrolled ? "border-[#c8a97a]/40 bg-white text-[#3f2a14]" : "border-white/30 bg-white/10 text-white",
+              "inline-flex h-9 w-9 items-center justify-center rounded-lg border transition md:hidden",
+              scrolled ? "border-[#c8a97a]/40 bg-white/80 text-[#3f2a14]" : "border-white/30 text-white",
             ].join(" ")}
             aria-label={open ? "Chiudi menu" : "Apri menu"}
             onClick={() => setOpen(!open)}
           >
-            {open ? <X size={20} /> : <Menu size={20} />}
+            {open ? <X size={18} /> : <Menu size={18} />}
           </button>
         </nav>
 
@@ -223,22 +218,23 @@ export default function Home() {
           <motion.nav
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2 }}
-            className="mx-4 mt-1 rounded-2xl border border-[#c8a97a]/30 bg-[#fffaf1]/97 p-3 shadow-2xl backdrop-blur lg:hidden"
+            transition={{ duration: 0.18 }}
+            className="mx-4 mt-1 rounded-2xl border border-[#c8a97a]/30 bg-[#fffaf1]/97 p-3 shadow-2xl backdrop-blur md:hidden"
           >
             {navItems.map(([label, href]) => (
               <a
                 key={label}
                 href={href}
-                className="block rounded-lg px-3 py-3 text-base font-semibold text-[#3f2a14] transition hover:bg-[#f5ece0]"
+                className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-[#3f2a14] transition hover:bg-[#f5ece0]"
                 onClick={() => setOpen(false)}
               >
                 {label}
               </a>
             ))}
+            <div className="my-2 h-px bg-[#c8a97a]/20" />
             <a
               href="#contatti"
-              className="mt-2 flex items-center justify-center gap-2 rounded-full bg-[#8b3a0a] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#6d2d08]"
+              className="flex items-center justify-center rounded-full bg-[#8b1a1a] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#6d1414]"
               onClick={() => setOpen(false)}
             >
               Vieni a trovarci
