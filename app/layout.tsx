@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./font-vars.css";
+import "./navbar-scroll-logo.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000"),
