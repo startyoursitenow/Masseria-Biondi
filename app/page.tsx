@@ -132,17 +132,18 @@ export default function Home() {
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50">
-        <div className="mx-auto flex max-w-[1500px] items-center justify-between px-5 py-4 lg:px-8">
-          <a href="#home" className="brand-pill" aria-label="Masseria Dei Duchi home">
-            <Image src="/media/logo-masseria-biondi.png" alt="Logo Masseria Dei Duchi Fratelli Biondi" width={82} height={82} className="h-14 w-14 rounded-full object-contain" priority />
-            <span>Masseria Dei Duchi</span>
+        <div className="nav-shell">
+          <a href="#home" className="brand-logo" aria-label="Masseria Dei Duchi home">
+            <img src="/media/logo-masseria-web.svg" alt="Masseria Dei Duchi Faicchio BN" />
           </a>
-          <nav className="glass-nav hidden items-center gap-1 lg:flex" aria-label="Navigazione principale">
-            {navItems.map(([label, href]) => (
-              <a key={label} href={href} className="nav-link">
-                {label}
-              </a>
-            ))}
+          <nav className="desktop-nav hidden items-center gap-1 lg:flex" aria-label="Navigazione principale">
+            <div className="nav-links">
+              {navItems.map(([label, href]) => (
+                <a key={label} href={href} className="nav-link">
+                  {label}
+                </a>
+              ))}
+            </div>
             <a href="#contatti" className="nav-cta">
               Vieni a trovarci
             </a>
