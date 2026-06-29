@@ -443,7 +443,7 @@ export default function Home() {
       <footer className="site-footer">
         <div className="wide-container grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
           <div>
-            <Image src="/media/masseria-dei-duchi-logo.png" alt="Logo Masseria Dei Duchi" width={240} height={167} className="mb-5 h-28 w-auto max-w-[240px] object-contain" />
+            <Image src="/media/footer-logo-masseria-biondi.png" alt="Logo Masseria Dei Duchi" width={220} height={220} className="mb-5 h-auto w-44 max-w-full object-contain sm:w-52" />
             <p>Tradizione casearia, latte dei nostri allevamenti e vendita diretta nel cuore del Sannio.</p>
           </div>
           <div>
