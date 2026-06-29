@@ -22,7 +22,11 @@ export const metadata: Metadata = {
     siteName: "Masseria Dei Duchi",
     locale: "it_IT",
     type: "website",
-    images: [{ url: "/media/logo-masseria-biondi.png", alt: "Masseria Dei Duchi" }]
+    images: [{ url: "/media/masseria-dei-duchi-logo.png", alt: "Masseria Dei Duchi" }]
+  },
+  icons: {
+    icon: "/media/masseria-dei-duchi-logo.png",
+    apple: "/media/masseria-dei-duchi-logo.png"
   }
 };
 

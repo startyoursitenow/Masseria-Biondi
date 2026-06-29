@@ -152,7 +152,7 @@ export default function Home() {
             className="absolute left-2 top-1/2 z-10 block w-[118px] -translate-y-1/2 overflow-visible transition-opacity hover:opacity-90 sm:left-4 sm:w-[145px] lg:w-[172px] xl:w-[190px]"
           >
             <img
-              src="/media/logo-masseria-web.svg"
+              src="/media/masseria-dei-duchi-logo.png"
               alt="Masseria Dei Duchi"
               className="block h-auto w-full object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.22)]"
             />
@@ -268,7 +268,7 @@ export default function Home() {
                 per chi cerca autenticita prima ancora dell&apos;apparenza.
               </p>
               <div className="signature-card">
-                <Image src="/media/logo-masseria-biondi.png" alt="Logo originale Masseria Dei Duchi" width={180} height={180} className="h-24 w-24 object-contain" />
+                <Image src="/media/masseria-dei-duchi-logo.png" alt="Logo Masseria Dei Duchi" width={220} height={154} className="h-28 w-auto max-w-[220px] object-contain" />
                 <div>
                   <strong>Caseificio Masseria Dei Duchi</strong>
                   <span>Azienda agricola Biondi Gianluca</span>
@@ -441,7 +441,7 @@ export default function Home() {
       <footer className="site-footer">
         <div className="wide-container grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
           <div>
-            <Image src="/media/logo-masseria-biondi.png" alt="Logo Masseria Dei Duchi" width={140} height={140} className="mb-5 h-28 w-28 rounded-full bg-white object-contain p-2" />
+            <Image src="/media/masseria-dei-duchi-logo.png" alt="Logo Masseria Dei Duchi" width={240} height={167} className="mb-5 h-28 w-auto max-w-[240px] object-contain" />
             <p>Tradizione casearia, latte dei nostri allevamenti e vendita diretta nel cuore del Sannio.</p>
           </div>
           <div>

@@ -3,7 +3,7 @@ const siteConfig = {
     name: "Nome Attivita",
     slogan: "Soluzioni locali curate, veloci e su misura",
     description: "Template premium per attivita locali con sezioni modulari, CTA chiare, SEO locale e contenuti facili da personalizzare.",
-    logo: "/media/logo-template.svg",
+    logo: "/media/masseria-dei-duchi-logo.png",
     whatsapp: "+390000000000",
     phone: "+39 000 000 0000",
     email: "info@nomeattivita.it",
