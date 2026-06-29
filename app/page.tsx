@@ -154,7 +154,7 @@ export default function Home() {
             className="absolute left-2 top-1/2 z-10 block w-[118px] -translate-y-1/2 overflow-visible transition-opacity hover:opacity-90 sm:left-4 sm:w-[145px] lg:w-[172px] xl:w-[190px]"
           >
             <img
-              src="/media/brand-logo-masseria-3x.png"
+              src="/media/brand-logo-masseria-3x.svg"
               alt="Masseria Dei Duchi"
               className="block h-auto w-full object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.22)]"
             />
@@ -443,7 +443,7 @@ export default function Home() {
       <footer className="site-footer">
         <div className="wide-container grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
           <div>
-            <Image src="/media/footer-logo-masseria-biondi.png" alt="Logo Masseria Dei Duchi" width={220} height={220} className="mb-5 h-auto w-44 max-w-full object-contain sm:w-52" />
+            <Image src="/media/footer-logo-masseria-biondi.png" alt="Logo Masseria Dei Duchi" width={220} height={220} className="mb-5 aspect-square w-44 max-w-full rounded-full bg-white object-contain sm:w-52" />
             <p>Tradizione casearia, latte dei nostri allevamenti e vendita diretta nel cuore del Sannio.</p>
           </div>
           <div>
