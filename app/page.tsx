@@ -11,7 +11,6 @@ import {
   MessageCircle,
   Menu,
   Milk,
-  Phone,
   ShieldCheck,
   Sparkles,
   Wheat,
@@ -29,7 +28,10 @@ const navItems = [
   ["Contatti", "#contatti"]
 ];
 
-const whatsappHref = "https://wa.me/393475320807";
+const whatsappPrimaryHref = "https://wa.me/393475320807";
+const whatsappSecondaryHref = "https://wa.me/393453429594";
+const facebookHref = "https://www.facebook.com/profile.php?id=100064866903557";
+const instagramHref = "https://www.instagram.com/masseria_dei_duchi/";
 
 const images = {
   hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2400&q=85",
@@ -452,16 +454,15 @@ export default function Home() {
               <h2 className="section-title text-left">Via Odi 20, Faicchio (BN).</h2>
               <p>Raggiungi il punto vendita in masseria. Per orari del giorno e disponibilita dei prodotti, chiama o scrivi prima di partire.</p>
               <div className="contact-list">
-                <a href="tel:+393475320807" aria-label="Chiama il numero 347 5320807">
-                  <Phone size={20} aria-hidden="true" /> 347 5320807
+                <a href={whatsappPrimaryHref} aria-label="Scrivi su WhatsApp al numero 347 5320807">
+                  <MessageCircle size={20} aria-hidden="true" /> 347 5320807
                 </a>
-                <a href={whatsappHref} aria-label="Scrivi su WhatsApp al numero 347 5320807">
-                  <MessageCircle size={20} aria-hidden="true" /> WhatsApp
-                </a>
-                <a href="tel:+393453429594" aria-label="Chiama il numero 345 3429594">
-                  <Phone size={20} aria-hidden="true" /> 345 3429594
+                <a href={whatsappSecondaryHref} aria-label="Scrivi su WhatsApp al numero 345 3429594">
+                  <MessageCircle size={20} aria-hidden="true" /> 345 3429594
                 </a>
                 <a href="mailto:masseria.deiduchi@gmail.com" aria-label="Invia email a masseria.deiduchi@gmail.com">masseria.deiduchi@gmail.com</a>
+                <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Facebook Masseria Dei Duchi in una nuova scheda">Facebook</a>
+                <a href={instagramHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Instagram Masseria Dei Duchi in una nuova scheda">Instagram</a>
               </div>
               <a className="button-primary mt-8 w-fit" href="https://www.google.com/maps/search/?api=1&query=Via%20Odi%2020%20Faicchio%20BN" target="_blank" rel="noopener noreferrer" aria-label="Apri posizione della Masseria Dei Duchi su Google Maps in una nuova scheda">
                 Apri su Google Maps <MapPin size={18} aria-hidden="true" />
