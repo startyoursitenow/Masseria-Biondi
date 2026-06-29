@@ -8,6 +8,7 @@ import {
   ChevronDown,
   Clock,
   MapPin,
+  MessageCircle,
   Menu,
   Milk,
   Phone,
@@ -27,6 +28,8 @@ const navItems = [
   ["Il punto vendita", "#punto-vendita"],
   ["Contatti", "#contatti"]
 ];
+
+const whatsappHref = "https://wa.me/393475320807";
 
 const images = {
   hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2400&q=85",
@@ -82,14 +85,14 @@ const process = [
   ["Lavorazione del latte", "Il latte entra in laboratorio e viene trasformato con metodo artigianale."],
   ["Produzione", "Mani esperte, pasta filata, ricotte e formaggi prendono forma ogni giorno."],
   ["Stagionatura", "Tempo, ambiente e controllo danno profondita ai prodotti piu intensi."],
-  ["Vendita diretta", "I formaggi arrivano nel punto vendita, senza perdere identita e freschezza."]
+  ["Vendita diretta", "I formaggi arrivano nel punto vendita della masseria, pronti da scegliere con chi li produce."]
 ];
 
 const reasons: Array<[string, LucideIcon]> = [
   ["Latte proveniente dai nostri allevamenti", Milk],
   ["Produzione artigianale", Sparkles],
   ["Materie prime selezionate", Wheat],
-  ["Vendita diretta", ShieldCheck]
+  ["Acquisto diretto in masseria", ShieldCheck]
 ];
 
 function Reveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -212,7 +215,7 @@ export default function Home() {
               href="#contatti"
               className="inline-flex h-9 shrink-0 items-center rounded-full bg-[#8b1a1a] px-4 text-sm font-semibold text-white transition hover:-translate-y-px hover:bg-[#6d1414]"
             >
-              Vieni a trovarci
+              Vieni al punto vendita
             </a>
           </div>
 
@@ -256,7 +259,7 @@ export default function Home() {
               className="flex items-center justify-center rounded-full bg-[#8b1a1a] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#6d1414]"
               onClick={() => setOpen(false)}
             >
-              Vieni a trovarci
+              Vieni al punto vendita
             </a>
           </motion.nav>
         )}
@@ -271,14 +274,14 @@ export default function Home() {
           <div className="hero-content">
             <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} className="max-w-5xl">
               <span className="hero-kicker">Caseificio Artigianale · Faicchio (BN)</span>
-              <h1>La tradizione del latte, dal cuore del Sannio.</h1>
-              <p>Da generazioni trasformiamo il latte dei nostri allevamenti in formaggi artigianali dal gusto autentico.</p>
+              <h1>Formaggi artigianali da acquistare direttamente in masseria.</h1>
+              <p>Vieni a Faicchio: trovi prodotti freschi, stagionati e consigli di chi lavora ogni giorno il latte dei propri allevamenti.</p>
               <div className="flex flex-col gap-3 pt-4 sm:flex-row">
-                <a href="#masseria" className="button-primary">
-                  Scopri la Masseria <ArrowRight size={18} aria-hidden="true" />
+                <a href="#contatti" className="button-primary">
+                  Vieni al punto vendita <ArrowRight size={18} aria-hidden="true" />
                 </a>
                 <a href="#prodotti" className="button-secondary">
-                  I nostri prodotti
+                  Scopri i prodotti
                 </a>
               </div>
             </motion.div>
@@ -389,6 +392,11 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
+          <div className="wide-container mt-10 flex justify-center">
+            <a href="#punto-vendita" className="button-primary">
+              Scegli in masseria <ArrowRight size={18} aria-hidden="true" />
+            </a>
+          </div>
         </section>
 
         <section id="punto-vendita" className="section-pad bg-ivory">
@@ -397,14 +405,14 @@ export default function Home() {
               <span className="eyebrow">Il punto vendita</span>
               <h2 className="section-title text-left">Acquisti direttamente dove il latte diventa formaggio.</h2>
               <p className="section-lead text-left">
-                Nel nostro punto vendita puoi acquistare direttamente tutti i prodotti appena realizzati, parlare con chi li produce e scegliere cosa portare in tavola.
+                Nel punto vendita scegli i formaggi direttamente in masseria, scopri quali prodotti sono disponibili quel giorno e porti a casa prodotti appena realizzati o stagionati con cura.
               </p>
               <div className="info-row">
-                <Clock size={22} />
-                <span>Produzione propria e disponibilita secondo giornata e stagione.</span>
+                <Clock size={22} aria-hidden="true" />
+                <span>Disponibilita variabile: chiama o scrivi su WhatsApp prima di venire.</span>
               </div>
               <a href="#contatti" className="button-primary mt-8 w-fit">
-                Vieni a trovarci <ArrowRight size={18} aria-hidden="true" />
+                Apri contatti e mappa <ArrowRight size={18} aria-hidden="true" />
               </a>
             </Reveal>
             <Reveal className="order-1 lg:order-2">
@@ -442,10 +450,13 @@ export default function Home() {
             <Reveal className="contact-panel">
               <span className="eyebrow">Dove siamo</span>
               <h2 className="section-title text-left">Via Odi 20, Faicchio (BN).</h2>
-              <p>Caseificio Masseria Dei Duchi, azienda agricola Biondi Gianluca. Produzione artigianale e vendita diretta in masseria.</p>
+              <p>Raggiungi il punto vendita in masseria. Per orari del giorno e disponibilita dei prodotti, chiama o scrivi prima di partire.</p>
               <div className="contact-list">
                 <a href="tel:+393475320807" aria-label="Chiama il numero 347 5320807">
                   <Phone size={20} aria-hidden="true" /> 347 5320807
+                </a>
+                <a href={whatsappHref} aria-label="Scrivi su WhatsApp al numero 347 5320807">
+                  <MessageCircle size={20} aria-hidden="true" /> WhatsApp
                 </a>
                 <a href="tel:+393453429594" aria-label="Chiama il numero 345 3429594">
                   <Phone size={20} aria-hidden="true" /> 345 3429594
