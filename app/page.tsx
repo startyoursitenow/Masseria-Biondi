@@ -131,7 +131,9 @@ export default function Home() {
   const heroY = useTransform(scrollY, [0, 900], [0, 120]);
 
   useEffect(() => {
-    const unsub = scrollY.on("change", (v) => setScrolled(v > 10));
+    const unsub = scrollY.on("change", (v) => {
+      setScrolled((current) => (current ? v > 24 : v > 60));
+    });
     return () => unsub();
   }, [scrollY]);
 
@@ -139,10 +141,10 @@ export default function Home() {
     <>
       <header
         className={[
-          "fixed inset-x-0 top-0 z-50 w-full transition-all duration-300",
+          "fixed inset-x-0 top-0 z-50 w-full transition-all duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
           scrolled || open
-            ? "border-b border-white/20 bg-[#fffaf1]/95 shadow-[0_2px_20px_rgba(0,0,0,0.07)] backdrop-blur-sm"
-            : "border-b border-transparent bg-transparent",
+            ? "nav-scrolled border-b border-white/20 bg-[#fffaf1]/95 shadow-[0_2px_20px_rgba(0,0,0,0.07)] backdrop-blur-sm"
+            : "nav-top border-b border-transparent bg-transparent",
         ].join(" ")}
       >
         <nav className="relative mx-auto flex h-16 w-[calc(100%-1rem)] max-w-7xl items-center justify-end overflow-visible rounded-none px-3 pl-[136px] sm:pl-[166px] md:h-20 md:px-5 md:pl-[188px] lg:pl-[214px]">
