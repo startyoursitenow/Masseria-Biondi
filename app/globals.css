@@ -363,32 +363,6 @@ a {
   transform: scale(1.045);
 }
 
-.signature-card {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 2rem;
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.64);
-  padding: 1rem;
-}
-
-.signature-card strong,
-.signature-card span {
-  display: block;
-}
-
-.signature-card strong {
-  color: var(--wine);
-  font-family: var(--font-display), serif;
-  font-size: 1.5rem;
-}
-
-.signature-card span {
-  color: var(--muted);
-}
-
 .gallery-grid {
   display: grid;
   grid-auto-rows: minmax(280px, auto);
@@ -667,10 +641,6 @@ a {
     border-radius: 20px;
   }
 
-  .signature-card {
-    align-items: flex-start;
-    flex-direction: column;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

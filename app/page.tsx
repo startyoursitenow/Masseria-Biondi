@@ -269,13 +269,6 @@ export default function Home() {
                 La nostra idea di qualita e semplice: latte fresco, trasformazione diretta in masseria, pulizia nel lavoro e sapori riconoscibili. Formaggi genuini, pensati
                 per chi cerca autenticita prima ancora dell&apos;apparenza.
               </p>
-              <div className="signature-card">
-                <Image src="/media/brand-logo-masseria-3x.png" alt="Logo Masseria Dei Duchi" width={220} height={147} className="h-28 w-auto max-w-[220px] object-contain" />
-                <div>
-                  <strong>Caseificio Masseria Dei Duchi</strong>
-                  <span>Azienda agricola Biondi Gianluca</span>
-                </div>
-              </div>
             </Reveal>
           </div>
         </section>
