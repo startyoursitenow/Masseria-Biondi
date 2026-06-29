@@ -1,22 +1,21 @@
 const siteConfig = {
   business: {
-    name: "Nome Attivita",
-    slogan: "Soluzioni locali curate, veloci e su misura",
-    description: "Template premium per attivita locali con sezioni modulari, CTA chiare, SEO locale e contenuti facili da personalizzare.",
-    logo: "/media/masseria-dei-duchi-logo.png",
-    whatsapp: "+390000000000",
-    phone: "+39 000 000 0000",
-    email: "info@nomeattivita.it",
-    address: "Via Esempio 10, 00100 Roma RM",
-    city: "Roma",
-    region: "RM",
+    name: "Caseificio Masseria Dei Duchi",
+    slogan: "Caseificio artigianale a Faicchio, nel cuore del Sannio",
+    description: "Produzione artigianale di caciocavallo, ricotte, mozzarelle e formaggi tipici con latte dei nostri allevamenti e vendita diretta in masseria.",
+    logo: "/media/footer-logo-masseria-biondi.png",
+    whatsapp: "+393475320807",
+    phone: "+39 347 5320807",
+    email: "masseria.deiduchi@gmail.com",
+    address: "Via Odi 20, 82030 Faicchio BN",
+    city: "Faicchio",
+    region: "BN",
     country: "IT",
     openingHours: "Mo-Sa 09:00-19:00",
     priceRange: "$$",
     social: [
-      { label: "Instagram", href: "https://www.instagram.com/" },
       { label: "Facebook", href: "https://www.facebook.com/" },
-      { label: "LinkedIn", href: "https://www.linkedin.com/" }
+      { label: "Instagram", href: "https://www.instagram.com/" }
     ]
   },
   brand: {
@@ -35,11 +34,11 @@ const siteConfig = {
     }
   },
   seo: {
-    title: "Nome Attivita | Servizi locali professionali",
-    description: "Sito professionale per attivita locali: servizi, recensioni, galleria, FAQ, contatti e CTA WhatsApp.",
-    siteUrl: "https://www.nomeattivita.it",
-    keywords: ["attivita locale", "servizi professionali", "Roma", "preventivo", "WhatsApp"],
-    ogImage: "/media/hero-template.svg"
+    title: "Caseificio Artigianale Masseria Dei Duchi | Faicchio BN",
+    description: "Produzione artigianale di caciocavallo, ricotte, mozzarelle e formaggi tipici nel cuore del Sannio.",
+    siteUrl: "https://masseria-biondi.vercel.app",
+    keywords: ["Masseria Dei Duchi", "caseificio artigianale Faicchio", "formaggi artigianali Sannio", "caciocavallo", "ricotta fresca", "mozzarella"],
+    ogImage: "/media/biglietto-masseria-dei-duchi.jpeg"
   },
   navigation: {
     links: [

@@ -116,10 +116,22 @@ function SectionTitle({ kicker, title, text }: { kicker: string; title: string; 
   );
 }
 
-function Photo({ src, alt, className = "", priority = false }: { src: string; alt: string; className?: string; priority?: boolean }) {
+function Photo({
+  src,
+  alt,
+  className = "",
+  priority = false,
+  sizes = "(max-width: 768px) 100vw, 50vw"
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  priority?: boolean;
+  sizes?: string;
+}) {
   return (
     <div className={`photo-frame ${className}`}>
-      <Image src={src} alt={alt} fill priority={priority} sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+      <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className="object-cover" />
     </div>
   );
 }
@@ -147,7 +159,7 @@ export default function Home() {
             : "nav-top border-b border-transparent bg-transparent",
         ].join(" ")}
       >
-        <nav className="relative mx-auto flex h-16 w-[calc(100%-1rem)] max-w-7xl items-center justify-end overflow-visible rounded-none px-3 pl-[136px] sm:pl-[166px] md:h-20 md:px-5 md:pl-[188px] lg:pl-[214px]">
+        <nav aria-label="Navigazione principale" className="relative mx-auto flex h-16 w-[calc(100%-1rem)] max-w-7xl items-center justify-end overflow-visible rounded-none px-3 pl-[136px] sm:pl-[166px] md:h-20 md:px-5 md:pl-[188px] lg:pl-[214px]">
           <a
             href="#home"
             aria-label="Masseria Dei Duchi home"
@@ -156,6 +168,10 @@ export default function Home() {
             <img
               src="/media/brand-logo-masseria-3x.svg"
               alt="Masseria Dei Duchi"
+              width="1536"
+              height="1024"
+              loading="eager"
+              decoding="async"
               className="block h-auto w-full object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.22)]"
             />
           </a>
@@ -187,6 +203,7 @@ export default function Home() {
           </div>
 
           <button
+            type="button"
             className={[
               "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition md:hidden",
               scrolled || open ? "border-[#c8a97a]/40 bg-white/80 text-[#3f2a14]" : "border-white/30 text-white",
@@ -200,6 +217,7 @@ export default function Home() {
 
         {open && (
           <motion.nav
+            aria-label="Navigazione mobile"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.18 }}
@@ -256,7 +274,7 @@ export default function Home() {
         <section id="storia" className="section-pad bg-ivory">
           <div className="wide-grid items-center">
             <Reveal>
-              <Photo src={images.family} alt="Famiglia in contesto agricolo, riferimento alla tradizione della masseria" className="aspect-[4/5]" />
+              <Photo src={images.family} alt="Famiglia in contesto agricolo, riferimento alla tradizione della masseria" className="aspect-[4/5]" sizes="(max-width: 1023px) 100vw, 50vw" />
             </Reveal>
             <Reveal className="story-copy">
               <span className="eyebrow">La nostra storia</span>
@@ -287,7 +305,7 @@ export default function Home() {
               [images.hay, "Fienili e campagna"]
             ].map(([src, alt], index) => (
               <Reveal key={alt} className={index === 0 ? "lg:col-span-2 lg:row-span-2" : ""}>
-                <Photo src={src} alt={alt} className="h-full min-h-[280px]" />
+                <Photo src={src} alt={alt} className="h-full min-h-[280px]" sizes={index === 0 ? "(max-width: 1023px) 100vw, 50vw" : "(max-width: 1023px) 100vw, 25vw"} />
               </Reveal>
             ))}
           </div>
@@ -298,7 +316,7 @@ export default function Home() {
           <div className="wide-container grid gap-6 md:grid-cols-3">
             {animals.map(([title, text, src]) => (
               <Reveal key={title} className="animal-card">
-                <Photo src={src} alt={title} className="aspect-[4/3]" />
+                <Photo src={src} alt={title} className="aspect-[4/3]" sizes="(max-width: 767px) 100vw, 33vw" />
                 <div className="p-6">
                   <h3>{title}</h3>
                   <p>{text}</p>
@@ -317,8 +335,8 @@ export default function Home() {
           <div className="wide-grid items-center">
             <Reveal>
               <div className="stacked-photos">
-                <Photo src={images.lab} alt="Laboratorio caseario professionale" className="aspect-[5/4]" />
-                <Photo src={images.aging} alt="Formaggi in stagionatura" className="small-overlap" />
+                <Photo src={images.lab} alt="Laboratorio caseario professionale" className="aspect-[5/4]" sizes="(max-width: 1023px) 100vw, 50vw" />
+                <Photo src={images.aging} alt="Formaggi in stagionatura" className="small-overlap" sizes="(max-width: 1023px) 62vw, 31vw" />
               </div>
             </Reveal>
             <Reveal>
@@ -346,7 +364,7 @@ export default function Home() {
           <div className="product-rail wide-container">
             {products.map(([name, description, src]) => (
               <Reveal key={name} className="product-card">
-                <Photo src={src} alt={name} className="aspect-[5/4]" />
+                <Photo src={src} alt={name} className="aspect-[5/4]" sizes="(max-width: 759px) 82vw, (max-width: 1179px) 50vw, 20vw" />
                 <div className="p-6">
                   <h3>{name}</h3>
                   <p>{description}</p>
@@ -373,7 +391,7 @@ export default function Home() {
               </a>
             </Reveal>
             <Reveal className="order-1 lg:order-2">
-              <Photo src={images.shop} alt="Punto vendita con banco prodotti e accoglienza" className="aspect-[5/4]" />
+              <Photo src={images.shop} alt="Punto vendita con banco prodotti e accoglienza" className="aspect-[5/4]" sizes="(max-width: 1023px) 100vw, 50vw" />
             </Reveal>
           </div>
         </section>
@@ -396,7 +414,7 @@ export default function Home() {
           <div className="masonry wide-container">
             {gallery.map(([src, alt], index) => (
               <Reveal key={`${alt}-${index}`} className={index % 3 === 0 ? "masonry-tall" : ""}>
-                <Photo src={src} alt={alt} className="h-full min-h-[260px]" />
+                <Photo src={src} alt={alt} className="h-full min-h-[260px]" sizes="(max-width: 759px) 100vw, (max-width: 1179px) 50vw, 25vw" />
               </Reveal>
             ))}
           </div>
@@ -417,7 +435,7 @@ export default function Home() {
                 </a>
                 <a href="mailto:masseria.deiduchi@gmail.com">masseria.deiduchi@gmail.com</a>
               </div>
-              <a className="button-primary mt-8 w-fit" href="https://www.google.com/maps/search/?api=1&query=Via%20Odi%2020%20Faicchio%20BN" target="_blank" rel="noreferrer">
+              <a className="button-primary mt-8 w-fit" href="https://www.google.com/maps/search/?api=1&query=Via%20Odi%2020%20Faicchio%20BN" target="_blank" rel="noopener noreferrer">
                 Apri su Google Maps <MapPin size={18} />
               </a>
             </Reveal>
@@ -441,9 +459,11 @@ export default function Home() {
           </div>
           <div>
             <h3>Contatti</h3>
-            <p>Via Odi 20, Faicchio (BN)</p>
-            <p>347 5320807 · 345 3429594</p>
-            <p>masseria.deiduchi@gmail.com</p>
+            <address className="not-italic">
+              <p>Via Odi 20, Faicchio (BN)</p>
+              <p>347 5320807 · 345 3429594</p>
+              <p>masseria.deiduchi@gmail.com</p>
+            </address>
           </div>
           <div>
             <h3>Seguici</h3>
