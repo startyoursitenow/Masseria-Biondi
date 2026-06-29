@@ -7,10 +7,12 @@ import {
   Check,
   ChevronDown,
   Clock,
+  ExternalLink,
+  Mail,
   MapPin,
-  MessageCircle,
   Menu,
   Milk,
+  Phone,
   ShieldCheck,
   Sparkles,
   Wheat,
@@ -29,9 +31,9 @@ const navItems = [
 ];
 
 const whatsappPrimaryHref = "https://wa.me/393475320807";
-const whatsappSecondaryHref = "https://wa.me/393453429594";
 const facebookHref = "https://www.facebook.com/profile.php?id=100064866903557";
 const instagramHref = "https://www.instagram.com/masseria_dei_duchi/";
+const googleMapsHref = "https://www.google.com/maps/search/?api=1&query=Via%20Odi%2020%20Faicchio%20BN";
 
 const images = {
   hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2400&q=85",
@@ -138,6 +140,30 @@ function Photo({
     <div className={`photo-frame ${className}`}>
       <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className="object-cover" />
     </div>
+  );
+}
+
+function WhatsAppLogo() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" className="brand-icon whatsapp-icon">
+      <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.74.46 3.44 1.32 4.94L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.51 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.13.82.84-3.05-.2-.31a8.23 8.23 0 0 1-1.26-4.38 8.24 8.24 0 1 1 8.24 8.24Zm4.52-6.17c-.25-.12-1.47-.73-1.7-.81-.23-.08-.4-.12-.56.12-.17.25-.65.81-.79.98-.15.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.9 2.41 1.02 2.58.12.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28Z" />
+    </svg>
+  );
+}
+
+function InstagramLogo() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" className="brand-icon">
+      <path fill="currentColor" d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6Zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" />
+    </svg>
+  );
+}
+
+function FacebookLogo() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" className="brand-icon">
+      <path fill="currentColor" d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06C2 17.08 5.66 21.24 10.44 22v-7.03H7.9v-2.91h2.54V9.84c0-2.52 1.49-3.91 3.77-3.91 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.9h2.78l-.44 2.91h-2.34V22C18.34 21.24 22 17.08 22 12.06Z" />
+    </svg>
   );
 }
 
@@ -276,8 +302,8 @@ export default function Home() {
           <div className="hero-content">
             <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} className="max-w-5xl">
               <span className="hero-kicker">Caseificio Artigianale · Faicchio (BN)</span>
-              <h1>Formaggi artigianali da acquistare direttamente in masseria.</h1>
-              <p>Vieni a Faicchio: trovi prodotti freschi, stagionati e consigli di chi lavora ogni giorno il latte dei propri allevamenti.</p>
+              <h1>Dal nostro allevamento alla tua tavola.</h1>
+              <p>Una filiera corta che garantisce freschezza, autenticità e sapori genuini.</p>
               <div className="flex flex-col gap-3 pt-4 sm:flex-row">
                 <a href="#contatti" className="button-primary">
                   Vieni al punto vendita <ArrowRight size={18} aria-hidden="true" />
@@ -454,17 +480,56 @@ export default function Home() {
               <h2 className="section-title text-left">Via Odi 20, Faicchio (BN).</h2>
               <p>Raggiungi il punto vendita in masseria. Per orari del giorno e disponibilita dei prodotti, chiama o scrivi prima di partire.</p>
               <div className="contact-list">
-                <a href={whatsappPrimaryHref} aria-label="Scrivi su WhatsApp al numero 347 5320807">
-                  <MessageCircle size={20} aria-hidden="true" /> 347 5320807
+                <a className="contact-card contact-card-primary" href="https://wa.me/393475320807?text=Ciao,%20vorrei%20avere%20informazioni%20sui%20vostri%20prodotti." aria-label="Scrivici su WhatsApp">
+                  <span className="contact-card-icon"><WhatsAppLogo /></span>
+                  <span className="contact-card-text">
+                    <strong>Scrivici su WhatsApp</strong>
+                    <small>Rispondiamo rapidamente.</small>
+                  </span>
+                  <ExternalLink size={17} aria-hidden="true" className="contact-card-arrow" />
                 </a>
-                <a href={whatsappSecondaryHref} aria-label="Scrivi su WhatsApp al numero 345 3429594">
-                  <MessageCircle size={20} aria-hidden="true" /> 345 3429594
+                <a className="contact-card" href="tel:+393475320807" aria-label="Chiama il numero 347 5320807">
+                  <span className="contact-card-icon"><Phone size={20} aria-hidden="true" /></span>
+                  <span className="contact-card-text">
+                    <strong>Chiama</strong>
+                    <small>347 5320807 · 345 3429594</small>
+                  </span>
+                  <ExternalLink size={17} aria-hidden="true" className="contact-card-arrow" />
                 </a>
-                <a href="mailto:masseria.deiduchi@gmail.com" aria-label="Invia email a masseria.deiduchi@gmail.com">masseria.deiduchi@gmail.com</a>
-                <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Facebook Masseria Dei Duchi in una nuova scheda">Facebook</a>
-                <a href={instagramHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Instagram Masseria Dei Duchi in una nuova scheda">Instagram</a>
+                <a className="contact-card" href={googleMapsHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Google Maps della Masseria in una nuova scheda">
+                  <span className="contact-card-icon"><MapPin size={20} aria-hidden="true" /></span>
+                  <span className="contact-card-text">
+                    <strong>Come raggiungerci</strong>
+                    <small>Apri Google Maps</small>
+                  </span>
+                  <ExternalLink size={17} aria-hidden="true" className="contact-card-arrow" />
+                </a>
+                <a className="contact-card" href="mailto:masseria.deiduchi@gmail.com" aria-label="Invia email a masseria.deiduchi@gmail.com">
+                  <span className="contact-card-icon"><Mail size={20} aria-hidden="true" /></span>
+                  <span className="contact-card-text">
+                    <strong>Email</strong>
+                    <small>masseria.deiduchi@gmail.com</small>
+                  </span>
+                  <ExternalLink size={17} aria-hidden="true" className="contact-card-arrow" />
+                </a>
+                <a className="contact-card" href={instagramHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Instagram Masseria Dei Duchi in una nuova scheda">
+                  <span className="contact-card-icon"><InstagramLogo /></span>
+                  <span className="contact-card-text">
+                    <strong>Instagram</strong>
+                    <small>Seguici per vedere la vita in masseria.</small>
+                  </span>
+                  <ExternalLink size={17} aria-hidden="true" className="contact-card-arrow" />
+                </a>
+                <a className="contact-card" href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Facebook Masseria Dei Duchi in una nuova scheda">
+                  <span className="contact-card-icon"><FacebookLogo /></span>
+                  <span className="contact-card-text">
+                    <strong>Facebook</strong>
+                    <small>Resta aggiornato sulle novità.</small>
+                  </span>
+                  <ExternalLink size={17} aria-hidden="true" className="contact-card-arrow" />
+                </a>
               </div>
-              <a className="button-primary mt-8 w-fit" href="https://www.google.com/maps/search/?api=1&query=Via%20Odi%2020%20Faicchio%20BN" target="_blank" rel="noopener noreferrer" aria-label="Apri posizione della Masseria Dei Duchi su Google Maps in una nuova scheda">
+              <a className="button-primary mt-8 w-fit" href={googleMapsHref} target="_blank" rel="noopener noreferrer" aria-label="Apri posizione della Masseria Dei Duchi su Google Maps in una nuova scheda">
                 Apri su Google Maps <MapPin size={18} aria-hidden="true" />
               </a>
             </Reveal>
