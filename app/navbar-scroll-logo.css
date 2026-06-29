@@ -1,10 +1,11 @@
 header > nav {
-  height: 76px !important;
+  height: 88px !important;
   overflow: visible !important;
 }
 
 header > nav > a[aria-label="Masseria Dei Duchi home"] {
-  transform: translateY(-44%) scale(1.22);
+  top: 68% !important;
+  transform: translateY(-50%) scale(1.22);
   transform-origin: left center;
   z-index: 10;
   overflow: visible;
@@ -26,37 +27,44 @@ header > nav > a[aria-label="Masseria Dei Duchi home"] img {
 
 @keyframes navbar-logo-shrink-mobile {
   from {
-    transform: translateY(-44%) scale(1.22);
+    top: 68%;
+    transform: translateY(-50%) scale(1.22);
   }
 
   to {
-    transform: translateY(-44%) scale(1);
+    top: 50%;
+    transform: translateY(-50%) scale(1);
   }
 }
 
 @keyframes navbar-logo-shrink-tablet {
   from {
-    transform: translateY(-44%) scale(1.5);
+    top: 76%;
+    transform: translateY(-50%) scale(1.5);
   }
 
   to {
-    transform: translateY(-44%) scale(1);
+    top: 50%;
+    transform: translateY(-50%) scale(1);
   }
 }
 
 @keyframes navbar-logo-shrink-desktop {
   from {
-    transform: translateY(-44%) scale(1.86);
+    top: 88%;
+    transform: translateY(-50%) scale(1.86);
   }
 
   to {
-    transform: translateY(-44%) scale(1);
+    top: 50%;
+    transform: translateY(-50%) scale(1);
   }
 }
 
 @media (min-width: 641px) {
   header > nav > a[aria-label="Masseria Dei Duchi home"] {
-    transform: translateY(-44%) scale(1.5);
+    top: 76% !important;
+    transform: translateY(-50%) scale(1.5);
   }
 
   @supports (animation-timeline: scroll()) {
@@ -68,13 +76,18 @@ header > nav > a[aria-label="Masseria Dei Duchi home"] img {
 
 @media (min-width: 768px) {
   header > nav {
-    height: 92px !important;
+    height: 104px !important;
   }
 }
 
 @media (min-width: 1024px) {
+  header > nav {
+    height: 128px !important;
+  }
+
   header > nav > a[aria-label="Masseria Dei Duchi home"] {
-    transform: translateY(-44%) scale(1.86);
+    top: 88% !important;
+    transform: translateY(-50%) scale(1.86);
   }
 
   @supports (animation-timeline: scroll()) {
@@ -88,6 +101,7 @@ header > nav > a[aria-label="Masseria Dei Duchi home"] img {
   header > nav > a[aria-label="Masseria Dei Duchi home"] {
     animation: none !important;
     transition: none !important;
-    transform: translateY(-44%) scale(1) !important;
+    top: 50% !important;
+    transform: translateY(-50%) scale(1) !important;
   }
 }
