@@ -652,11 +652,6 @@ a {
   line-height: 1.35;
 }
 
-.contact-card-arrow {
-  color: var(--gold-dark);
-  opacity: 0.72;
-}
-
 .brand-icon {
   display: block;
   width: 20px;

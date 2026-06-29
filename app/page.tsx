@@ -7,7 +7,6 @@ import {
   Check,
   ChevronDown,
   Clock,
-  ExternalLink,
   Mail,
   MapPin,
   Menu,
@@ -486,7 +485,6 @@ export default function Home() {
                     <strong>Scrivici su WhatsApp</strong>
                     <small>Rispondiamo rapidamente.</small>
                   </span>
-                  <ExternalLink size={17} aria-hidden="true" className="contact-card-arrow" />
                 </a>
                 <a className="contact-card" href="tel:+393475320807" aria-label="Chiama il numero 347 5320807">
                   <span className="contact-card-icon"><Phone size={20} aria-hidden="true" /></span>
@@ -494,7 +492,6 @@ export default function Home() {
                     <strong>Chiama</strong>
                     <small>347 5320807 · 345 3429594</small>
                   </span>
-                  <ExternalLink size={17} aria-hidden="true" className="contact-card-arrow" />
                 </a>
                 <a className="contact-card" href={googleMapsHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Google Maps della Masseria in una nuova scheda">
                   <span className="contact-card-icon"><MapPin size={20} aria-hidden="true" /></span>
@@ -502,7 +499,6 @@ export default function Home() {
                     <strong>Come raggiungerci</strong>
                     <small>Apri Google Maps</small>
                   </span>
-                  <ExternalLink size={17} aria-hidden="true" className="contact-card-arrow" />
                 </a>
                 <a className="contact-card" href="mailto:masseria.deiduchi@gmail.com" aria-label="Invia email a masseria.deiduchi@gmail.com">
                   <span className="contact-card-icon"><Mail size={20} aria-hidden="true" /></span>
@@ -510,7 +506,6 @@ export default function Home() {
                     <strong>Email</strong>
                     <small>masseria.deiduchi@gmail.com</small>
                   </span>
-                  <ExternalLink size={17} aria-hidden="true" className="contact-card-arrow" />
                 </a>
                 <a className="contact-card" href={instagramHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Instagram Masseria Dei Duchi in una nuova scheda">
                   <span className="contact-card-icon"><InstagramLogo /></span>
@@ -518,7 +513,6 @@ export default function Home() {
                     <strong>Instagram</strong>
                     <small>Seguici per vedere la vita in masseria.</small>
                   </span>
-                  <ExternalLink size={17} aria-hidden="true" className="contact-card-arrow" />
                 </a>
                 <a className="contact-card" href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Facebook Masseria Dei Duchi in una nuova scheda">
                   <span className="contact-card-icon"><FacebookLogo /></span>
@@ -526,7 +520,6 @@ export default function Home() {
                     <strong>Facebook</strong>
                     <small>Resta aggiornato sulle novità.</small>
                   </span>
-                  <ExternalLink size={17} aria-hidden="true" className="contact-card-arrow" />
                 </a>
               </div>
               <a className="button-primary mt-8 w-fit" href={googleMapsHref} target="_blank" rel="noopener noreferrer" aria-label="Apri posizione della Masseria Dei Duchi su Google Maps in una nuova scheda">
