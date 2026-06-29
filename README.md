@@ -1,31 +1,16 @@
-# Local Business Template
+# Masseria Dei Duchi
 
-Template Next.js, TypeScript e Tailwind CSS per siti di attivita locali.
+Sito Next.js per Caseificio Masseria Dei Duchi, ottimizzato per Vercel.
 
 ## Struttura
 
-- `site.config.js`: unica fonte per testi, colori, contatti, SEO, servizi, recensioni, FAQ e immagini.
-- `lib/siteData.ts`: tipi, link WhatsApp/telefono/email e schema LocalBusiness.
-- `components/`: sezioni modulari riutilizzabili.
-- `app/`: layout, home, sitemap e robots.
-- `public/media/`: logo e immagini placeholder.
-
-## Cambio settore in meno di 5 minuti
-
-1. Apri `site.config.js`.
-2. Cambia `business.name`, `slogan`, contatti e indirizzo.
-3. Aggiorna `seo.title`, `seo.description`, `seo.siteUrl` e keyword.
-4. Sostituisci `services.items`, `reasons.items`, `reviews.items` e `faq.items`.
-5. Cambia immagini in `hero.media` e `gallery.items`.
-6. Aggiorna colori in `brand.colors` se serve.
-
-## Esempi settore
-
-- Ottica: servizi = controllo vista, lenti progressive, montature, assistenza.
-- B&B: servizi = camere, colazione, transfer, esperienze.
-- Centro estetico: servizi = trattamenti viso, corpo, laser, consulenza.
-- Immobiliare: servizi = vendita, affitto, valutazione, gestione visite.
-- Ristorante: servizi = menu, prenotazioni, eventi, delivery.
+- `app/page.tsx`: home page e sezioni principali.
+- `app/layout.tsx`: metadata, viewport, preconnect e JSON-LD.
+- `app/globals.css`: stile globale e token colore.
+- `app/navbar-scroll-logo.css`: animazione logo navbar.
+- `site.config.js`: dati condivisi usati da sitemap, robots e pagine legali.
+- `lib/siteData.ts`: export tipizzato della configurazione.
+- `public/media/`: asset attualmente usati dal sito.
 
 ## Avvio locale
 
@@ -34,6 +19,8 @@ npm install
 npm run dev
 ```
 
-## Deploy Vercel
+## Build
 
-Importa repository su Vercel e imposta framework `Next.js`. Nessuna configurazione extra richiesta.
+```bash
+npm run build
+```

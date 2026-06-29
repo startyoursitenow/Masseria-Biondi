@@ -14,6 +14,14 @@
   --ink: #211713;
   --muted: #735f55;
   --line: rgba(139, 30, 36, 0.16);
+  --brand-50: var(--ivory);
+  --brand-100: var(--cream);
+  --brand-500: var(--gold);
+  --brand-600: var(--bordeaux);
+  --brand-700: var(--wine);
+  --brand-900: var(--wine);
+  --accent: var(--gold);
+  --surface: var(--warm-white);
 }
 
 * {
