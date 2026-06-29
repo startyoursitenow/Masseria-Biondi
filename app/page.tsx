@@ -143,6 +143,17 @@ export default function Home() {
   const heroY = useTransform(scrollY, [0, 900], [0, 120]);
 
   useEffect(() => {
+    if (!open) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
+  useEffect(() => {
     const unsub = scrollY.on("change", (v) => {
       setScrolled((current) => (current ? v > 24 : v > 60));
     });
@@ -151,6 +162,9 @@ export default function Home() {
 
   return (
     <>
+      <a href="#main-content" className="skip-link">
+        Salta al contenuto principale
+      </a>
       <header
         className={[
           "fixed inset-x-0 top-0 z-50 w-full transition-all duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
@@ -209,14 +223,17 @@ export default function Home() {
               scrolled || open ? "border-[#c8a97a]/40 bg-white/80 text-[#3f2a14]" : "border-white/30 text-white",
             ].join(" ")}
             aria-label={open ? "Chiudi menu" : "Apri menu"}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
             onClick={() => setOpen(!open)}
           >
-            {open ? <X size={18} /> : <Menu size={18} />}
+            {open ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
           </button>
         </nav>
 
         {open && (
           <motion.nav
+            id="mobile-navigation"
             aria-label="Navigazione mobile"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -245,8 +262,8 @@ export default function Home() {
         )}
       </header>
 
-      <main id="home">
-        <section className="hero-section">
+      <main id="main-content">
+        <section id="home" className="hero-section">
           <motion.div style={{ y: heroY }} className="absolute inset-0">
             <Image src={images.hero} alt="Masseria nel verde del Sannio con campi e pascoli" fill priority sizes="100vw" className="object-cover" />
           </motion.div>
@@ -258,7 +275,7 @@ export default function Home() {
               <p>Da generazioni trasformiamo il latte dei nostri allevamenti in formaggi artigianali dal gusto autentico.</p>
               <div className="flex flex-col gap-3 pt-4 sm:flex-row">
                 <a href="#masseria" className="button-primary">
-                  Scopri la Masseria <ArrowRight size={18} />
+                  Scopri la Masseria <ArrowRight size={18} aria-hidden="true" />
                 </a>
                 <a href="#prodotti" className="button-secondary">
                   I nostri prodotti
@@ -267,7 +284,7 @@ export default function Home() {
             </motion.div>
           </div>
           <a href="#storia" className="scroll-cue" aria-label="Scorri alla storia">
-            <ChevronDown size={28} />
+            <ChevronDown size={28} aria-hidden="true" />
           </a>
         </section>
 
@@ -387,7 +404,7 @@ export default function Home() {
                 <span>Produzione propria e disponibilita secondo giornata e stagione.</span>
               </div>
               <a href="#contatti" className="button-primary mt-8 w-fit">
-                Vieni a trovarci <ArrowRight size={18} />
+                Vieni a trovarci <ArrowRight size={18} aria-hidden="true" />
               </a>
             </Reveal>
             <Reveal className="order-1 lg:order-2">
@@ -401,9 +418,9 @@ export default function Home() {
           <div className="wide-container grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {reasons.map(([text, Icon]) => (
               <Reveal key={text} className="reason-card">
-                <Icon size={30} />
+                <Icon size={30} aria-hidden="true" />
                 <h3>{text}</h3>
-                <Check className="reason-check" size={22} />
+                <Check className="reason-check" size={22} aria-hidden="true" />
               </Reveal>
             ))}
           </div>
@@ -427,16 +444,16 @@ export default function Home() {
               <h2 className="section-title text-left">Via Odi 20, Faicchio (BN).</h2>
               <p>Caseificio Masseria Dei Duchi, azienda agricola Biondi Gianluca. Produzione artigianale e vendita diretta in masseria.</p>
               <div className="contact-list">
-                <a href="tel:+393475320807">
-                  <Phone size={20} /> 347 5320807
+                <a href="tel:+393475320807" aria-label="Chiama il numero 347 5320807">
+                  <Phone size={20} aria-hidden="true" /> 347 5320807
                 </a>
-                <a href="tel:+393453429594">
-                  <Phone size={20} /> 345 3429594
+                <a href="tel:+393453429594" aria-label="Chiama il numero 345 3429594">
+                  <Phone size={20} aria-hidden="true" /> 345 3429594
                 </a>
-                <a href="mailto:masseria.deiduchi@gmail.com">masseria.deiduchi@gmail.com</a>
+                <a href="mailto:masseria.deiduchi@gmail.com" aria-label="Invia email a masseria.deiduchi@gmail.com">masseria.deiduchi@gmail.com</a>
               </div>
-              <a className="button-primary mt-8 w-fit" href="https://www.google.com/maps/search/?api=1&query=Via%20Odi%2020%20Faicchio%20BN" target="_blank" rel="noopener noreferrer">
-                Apri su Google Maps <MapPin size={18} />
+              <a className="button-primary mt-8 w-fit" href="https://www.google.com/maps/search/?api=1&query=Via%20Odi%2020%20Faicchio%20BN" target="_blank" rel="noopener noreferrer" aria-label="Apri posizione della Masseria Dei Duchi su Google Maps in una nuova scheda">
+                Apri su Google Maps <MapPin size={18} aria-hidden="true" />
               </a>
             </Reveal>
             <Reveal className="map-card">
