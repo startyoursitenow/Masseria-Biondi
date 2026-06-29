@@ -154,7 +154,7 @@ export default function Home() {
             className="absolute left-2 top-1/2 z-10 block w-[118px] -translate-y-1/2 overflow-visible transition-opacity hover:opacity-90 sm:left-4 sm:w-[145px] lg:w-[172px] xl:w-[190px]"
           >
             <img
-              src="/media/navbar-logo-masseria-biondi.png"
+              src="/media/brand-logo-masseria-clean.svg"
               alt="Masseria Dei Duchi"
               className="block h-auto w-full object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.22)]"
             />
@@ -270,7 +270,7 @@ export default function Home() {
                 per chi cerca autenticita prima ancora dell&apos;apparenza.
               </p>
               <div className="signature-card">
-                <Image src="/media/masseria-dei-duchi-logo.png" alt="Logo Masseria Dei Duchi" width={220} height={154} className="h-28 w-auto max-w-[220px] object-contain" />
+                <Image src="/media/brand-logo-masseria-clean.svg" alt="Logo Masseria Dei Duchi" width={220} height={147} className="h-28 w-auto max-w-[220px] object-contain" />
                 <div>
                   <strong>Caseificio Masseria Dei Duchi</strong>
                   <span>Azienda agricola Biondi Gianluca</span>
