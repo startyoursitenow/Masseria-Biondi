@@ -32,7 +32,9 @@ const navItems = [
 const whatsappPrimaryHref = "https://wa.me/393475320807";
 const facebookHref = "https://www.facebook.com/profile.php?id=100064866903557";
 const instagramHref = "https://www.instagram.com/masseria_dei_duchi/";
-const googleMapsHref = "https://www.google.com/maps/search/?api=1&query=Via%20Odi%2020%20Faicchio%20BN";
+const googleMapsHref = "https://maps.app.goo.gl/jdz2s1dSfHxBAMS46";
+const googleMapsEmbedSrc = "https://www.google.com/maps?q=41.2766677,14.4729861&z=16&output=embed";
+const availabilityHref = "https://wa.me/393475320807?text=Ciao,%20vorrei%20sapere%20orari%20e%20disponibilita%20dei%20prodotti%20di%20oggi.";
 
 const images = {
   hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2400&q=85",
@@ -493,11 +495,11 @@ export default function Home() {
                     <small>347 5320807 · 345 3429594</small>
                   </span>
                 </a>
-                <a className="contact-card" href={googleMapsHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Google Maps della Masseria in una nuova scheda">
-                  <span className="contact-card-icon"><MapPin size={20} aria-hidden="true" /></span>
+                <a className="contact-card" href={availabilityHref} aria-label="Chiedi orari e disponibilita dei prodotti su WhatsApp">
+                  <span className="contact-card-icon"><Clock size={20} aria-hidden="true" /></span>
                   <span className="contact-card-text">
-                    <strong>Come raggiungerci</strong>
-                    <small>Apri Google Maps</small>
+                    <strong>Orari e disponibilita</strong>
+                    <small>Chiedi prima di partire.</small>
                   </span>
                 </a>
                 <a className="contact-card" href="mailto:masseria.deiduchi@gmail.com" aria-label="Invia email a masseria.deiduchi@gmail.com">
@@ -529,7 +531,7 @@ export default function Home() {
             <Reveal className="map-card">
               <iframe
                 title="Mappa Masseria Dei Duchi Via Odi 20 Faicchio BN"
-                src="https://www.google.com/maps?q=Via%20Odi%2020%20Faicchio%20BN&output=embed"
+                src={googleMapsEmbedSrc}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
