@@ -113,7 +113,7 @@
     padding-right: 16vw;
     padding-bottom: 1rem;
     scroll-snap-type: x mandatory;
-    touch-action: pan-x;
+    touch-action: pan-x pan-y;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
     scrollbar-width: none;
