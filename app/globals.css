@@ -720,6 +720,85 @@ a {
   color: rgba(255, 255, 255, 0.56);
 }
 
+@media (max-width: 1023px) {
+  .mobile-navigation-panel {
+    position: relative;
+    z-index: 70;
+    background: #fffaf1;
+    pointer-events: auto;
+  }
+
+  .mobile-navigation-panel a {
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-auto-carousel,
+  .touch-carousel {
+    width: min(1500px, calc(100% - 32px));
+    display: flex;
+    overflow-x: auto;
+    overflow-y: visible;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    scroll-snap-type: x proximity;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .mobile-auto-carousel::-webkit-scrollbar,
+  .touch-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-auto-carousel > *,
+  .touch-carousel > * {
+    flex: 0 0 clamp(260px, 72vw, 360px);
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+
+  .gallery-grid {
+    grid-auto-rows: auto;
+  }
+
+  .gallery-grid .photo-frame,
+  .masonry .photo-frame,
+  .masonry-tall .photo-frame {
+    min-height: 280px;
+  }
+
+  .masonry {
+    columns: auto;
+    column-gap: 0;
+  }
+
+  .masonry > div {
+    margin-bottom: 0;
+    break-inside: auto;
+  }
+
+  .reasons-section {
+    display: none;
+  }
+
+  .contact-panel {
+    order: 1;
+  }
+
+  .map-card {
+    order: 2;
+    min-height: 260px;
+  }
+
+  .map-card iframe {
+    min-height: 260px;
+  }
+}
+
 @media (max-width: 640px) {
   .nav-shell {
     width: min(100% - 20px, 1320px);
@@ -754,8 +833,35 @@ a {
     border-radius: 20px;
   }
 
+  .contact-panel {
+    padding: 1.25rem;
+  }
+
   .contact-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  .contact-card {
+    min-height: 118px;
     grid-template-columns: 1fr;
+    align-content: start;
+    gap: 0.55rem;
+    padding: 0.85rem;
+  }
+
+  .contact-card-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .contact-card-text strong {
+    font-size: clamp(1rem, 4.8vw, 1.16rem);
+  }
+
+  .contact-card-text small {
+    font-size: 0.78rem;
+    line-height: 1.28;
   }
 
 }

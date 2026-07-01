@@ -192,6 +192,85 @@ export default function Home() {
     return () => unsub();
   }, [scrollY]);
 
+  useEffect(() => {
+    const carouselElements = Array.from(document.querySelectorAll<HTMLElement>(".mobile-auto-carousel, .touch-carousel"));
+    if (!carouselElements.length) return;
+
+    const cleanups = carouselElements.map((element) => {
+      let animationFrame = 0;
+      let pausedUntil = 0;
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let startScrollLeft = 0;
+      let horizontalSwipe = false;
+      const isAuto = element.classList.contains("mobile-auto-carousel");
+
+      const shouldUseMobileBehavior = () => window.matchMedia("(max-width: 1023px)").matches;
+
+      const tick = () => {
+        if (isAuto && shouldUseMobileBehavior() && Date.now() > pausedUntil && element.scrollWidth > element.clientWidth) {
+          const nextScrollLeft = element.scrollLeft + 0.28;
+          element.scrollLeft = nextScrollLeft >= element.scrollWidth - element.clientWidth - 1 ? 0 : nextScrollLeft;
+        }
+        animationFrame = window.requestAnimationFrame(tick);
+      };
+
+      const pause = () => {
+        pausedUntil = Date.now() + 2200;
+      };
+
+      const onTouchStart = (event: TouchEvent) => {
+        const touch = event.touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        startScrollLeft = element.scrollLeft;
+        horizontalSwipe = false;
+        pause();
+      };
+
+      const onTouchMove = (event: TouchEvent) => {
+        if (!shouldUseMobileBehavior()) return;
+
+        const touch = event.touches[0];
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+
+        if (!horizontalSwipe && Math.abs(deltaX) > 10 && Math.abs(deltaX) > Math.abs(deltaY) * 1.25) {
+          horizontalSwipe = true;
+        }
+
+        if (horizontalSwipe) {
+          event.preventDefault();
+          element.scrollLeft = startScrollLeft - deltaX;
+        }
+      };
+
+      const onTouchEnd = () => {
+        pause();
+        horizontalSwipe = false;
+      };
+
+      element.addEventListener("pointerenter", pause);
+      element.addEventListener("focusin", pause);
+      element.addEventListener("touchstart", onTouchStart, { passive: true });
+      element.addEventListener("touchmove", onTouchMove, { passive: false });
+      element.addEventListener("touchend", onTouchEnd, { passive: true });
+
+      animationFrame = window.requestAnimationFrame(tick);
+
+      return () => {
+        window.cancelAnimationFrame(animationFrame);
+        element.removeEventListener("pointerenter", pause);
+        element.removeEventListener("focusin", pause);
+        element.removeEventListener("touchstart", onTouchStart);
+        element.removeEventListener("touchmove", onTouchMove);
+        element.removeEventListener("touchend", onTouchEnd);
+      };
+    });
+
+    return () => cleanups.forEach((cleanup) => cleanup());
+  }, []);
+
   return (
     <>
       <a href="#main-content" className="skip-link">
@@ -270,7 +349,7 @@ export default function Home() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.18 }}
-            className="mx-4 mt-1 rounded-2xl border border-[#c8a97a]/30 bg-[#fffaf1]/97 p-3 shadow-2xl backdrop-blur md:hidden"
+            className="mobile-navigation-panel mx-4 mt-1 rounded-2xl border border-[#c8a97a]/30 p-3 shadow-2xl md:hidden"
           >
             {navItems.map(([label, href]) => (
               <a
@@ -346,7 +425,7 @@ export default function Home() {
             title="Campagna, stalle e laboratorio nello stesso racconto."
             text="Un luogo concreto, dove allevamento e caseificio convivono e rendono riconoscibile ogni forma di formaggio."
           />
-          <div className="gallery-grid wide-container">
+          <div className="gallery-grid wide-container mobile-auto-carousel masseria-carousel">
             {[
               [images.farm, "Esterni della masseria"],
               [images.pasture, "Pascoli nel territorio del Sannio"],
@@ -362,7 +441,7 @@ export default function Home() {
 
         <section className="section-pad bg-cream">
           <SectionTitle kicker="I nostri animali" title="Benessere animale, latte buono, prodotti sinceri." />
-          <div className="wide-container grid gap-6 md:grid-cols-3">
+          <div className="wide-container grid gap-6 md:grid-cols-3 mobile-auto-carousel animals-carousel">
             {animals.map(([title, text, src]) => (
               <Reveal key={title} className="animal-card">
                 <Photo src={src} alt={title} className="aspect-[4/3]" sizes="(max-width: 767px) 100vw, 33vw" />
@@ -410,7 +489,7 @@ export default function Home() {
             title="Formaggi artigianali, senza listino: prima viene il racconto."
             text="Ogni prodotto cambia con latte, stagionalita e lavorazione. Il punto vendita resta il luogo migliore per scoprirli."
           />
-          <div className="product-rail wide-container">
+          <div className="product-rail wide-container touch-carousel">
             {products.map(([name, description, src]) => (
               <Reveal key={name} className="product-card">
                 <Photo src={src} alt={name} className="aspect-[5/4]" sizes="(max-width: 759px) 82vw, (max-width: 1179px) 50vw, 20vw" />
@@ -450,7 +529,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section-pad">
+        <section className="section-pad reasons-section">
           <SectionTitle kicker="Perche scegliere noi" title="Qualita che si vede nella filiera." />
           <div className="wide-container grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {reasons.map(([text, Icon]) => (
@@ -465,7 +544,7 @@ export default function Home() {
 
         <section className="section-pad bg-cream">
           <SectionTitle kicker="Gallery" title="Dettagli di masseria, laboratorio e prodotti." />
-          <div className="masonry wide-container">
+          <div className="masonry wide-container mobile-auto-carousel gallery-carousel">
             {gallery.map(([src, alt], index) => (
               <Reveal key={`${alt}-${index}`} className={index % 3 === 0 ? "masonry-tall" : ""}>
                 <Photo src={src} alt={alt} className="h-full min-h-[260px]" sizes="(max-width: 759px) 100vw, (max-width: 1179px) 50vw, 25vw" />
