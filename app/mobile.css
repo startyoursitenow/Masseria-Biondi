@@ -179,6 +179,8 @@
     flex: 0 0 var(--carousel-card);
     min-width: 0;
     scroll-snap-align: start;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .carousel-hint {
