@@ -1,4 +1,16 @@
 @media (max-width: 640px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  #main-content,
+  .wide-container,
+  .wide-grid {
+    max-width: 100vw;
+  }
+
   .mobile-menu-toggle {
     position: relative;
     z-index: 90;
@@ -30,16 +42,16 @@
   .mobile-navigation-panel {
     position: relative;
     z-index: 80;
-    width: min(86vw, 360px);
-    height: calc(100dvh - 1rem);
+    width: min(74vw, 300px);
+    max-height: min(72dvh, 520px);
     margin: 0.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.45rem;
+    gap: 0.25rem;
     border: 1px solid rgba(176, 138, 74, 0.34);
     border-radius: 24px;
     background: #fffaf1;
-    padding: 5.25rem 1rem 1.1rem;
+    padding: 4.65rem 0.75rem 0.85rem;
     box-shadow: 0 26px 80px rgba(33, 23, 19, 0.24);
     pointer-events: auto;
     overflow-y: auto;
@@ -60,14 +72,14 @@
   }
 
   .mobile-drawer-link {
-    min-height: 52px;
+    min-height: 46px;
     display: flex;
     align-items: center;
     border-radius: 16px;
-    padding: 0.9rem 1rem;
+    padding: 0.72rem 0.82rem;
     color: var(--wine);
     font-family: var(--font-display), serif;
-    font-size: 1.45rem;
+    font-size: 1.22rem;
     font-weight: 700;
     line-height: 1.05;
     text-decoration: none;
@@ -81,18 +93,18 @@
 
   .mobile-menu-divider {
     height: 1px;
-    margin-block: 0.55rem;
+    margin-block: 0.4rem;
     background: rgba(176, 138, 74, 0.26);
   }
 
   .mobile-drawer-cta {
-    min-height: 50px;
+    min-height: 46px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 999px;
     background: var(--bordeaux);
-    padding: 0.85rem 1rem;
+    padding: 0.72rem 0.9rem;
     color: #fff;
     font-weight: 800;
     text-decoration: none;
@@ -133,18 +145,19 @@
   }
 
   .peek-carousel,
-  .touch-carousel,
-  .mobile-step-carousel,
-  .store-mobile-carousel,
-  .contact-carousel {
-    width: min(1500px, calc(100% - 32px));
+  .touch-carousel {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: visible;
     gap: 0.9rem;
-    padding-right: 22vw;
+    padding-inline: 13vw 18vw;
     padding-bottom: 1rem;
+    scroll-padding-inline: 13vw;
     scroll-snap-type: x mandatory;
     touch-action: pan-x;
     -webkit-overflow-scrolling: touch;
@@ -154,37 +167,29 @@
   }
 
   .peek-carousel::-webkit-scrollbar,
-  .touch-carousel::-webkit-scrollbar,
-  .mobile-step-carousel::-webkit-scrollbar,
-  .store-mobile-carousel::-webkit-scrollbar,
-  .contact-carousel::-webkit-scrollbar {
+  .touch-carousel::-webkit-scrollbar {
     display: none;
   }
 
   .peek-carousel > *,
-  .touch-carousel > *,
-  .mobile-step-carousel > *,
-  .store-mobile-carousel > *,
-  .contact-carousel > * {
-    flex: 0 0 76vw;
+  .touch-carousel > * {
+    flex: 0 0 74vw;
     min-width: 0;
-    scroll-snap-align: start;
-  }
-
-  .mobile-step-carousel,
-  .contact-carousel {
-    width: 100%;
+    scroll-snap-align: center;
   }
 
   .carousel-hint {
+    display: none;
+  }
+
+  .carousel-arrow {
     width: min(1500px, calc(100% - 32px));
     display: block;
     margin: -1.65rem auto 0.9rem;
     color: var(--gold-dark);
-    font-size: 0.82rem;
+    font-size: 1.2rem;
     font-weight: 900;
     text-align: right;
-    text-transform: uppercase;
   }
 
   .gallery-grid {
@@ -217,6 +222,9 @@
   }
 
   .contact-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
     margin-top: 0.85rem;
   }
 

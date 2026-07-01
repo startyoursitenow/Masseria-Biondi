@@ -332,7 +332,7 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-          <a href="#storia" className="scroll-cue" aria-label="Scorri alla storia">
+          <a href="#storia" className="scroll-cue" aria-label="Vai alla storia">
             <ChevronDown size={28} aria-hidden="true" />
           </a>
         </section>
@@ -363,7 +363,7 @@ export default function Home() {
             title="Campagna, stalle e laboratorio nello stesso racconto."
             text="Un luogo concreto, dove allevamento e caseificio convivono e rendono riconoscibile ogni forma di formaggio."
           />
-          <span className="carousel-hint">Scorri →</span>
+          <span className="carousel-arrow" aria-hidden="true">→</span>
           <div className="gallery-grid wide-container peek-carousel masseria-carousel">
             {[
               [images.farm, "Esterni della masseria"],
@@ -380,7 +380,7 @@ export default function Home() {
 
         <section className="section-pad bg-cream">
           <SectionTitle kicker="I nostri animali" title="Benessere animale, latte buono, prodotti sinceri." />
-          <span className="carousel-hint">Scorri →</span>
+          <span className="carousel-arrow" aria-hidden="true">→</span>
           <div className="wide-container grid gap-6 md:grid-cols-3 peek-carousel animals-carousel">
             {animals.map(([title, text, src]) => (
               <Reveal key={title} className="animal-card">
@@ -408,8 +408,7 @@ export default function Home() {
               </div>
             </Reveal>
             <Reveal>
-              <span className="carousel-hint">Scorri →</span>
-              <div className="timeline mobile-step-carousel">
+              <div className="timeline">
                 {process.map(([title, text], index) => (
                   <div className="timeline-item" key={title}>
                     <span>{index + 1}</span>
@@ -430,7 +429,7 @@ export default function Home() {
             title="Formaggi artigianali, senza listino: prima viene il racconto."
             text="Ogni prodotto cambia con latte, stagionalita e lavorazione. Il punto vendita resta il luogo migliore per scoprirli."
           />
-          <span className="carousel-hint">Scorri →</span>
+          <span className="carousel-arrow" aria-hidden="true">→</span>
           <div className="product-rail wide-container touch-carousel">
             {products.map(([name, description, src]) => (
               <Reveal key={name} className="product-card">
@@ -450,8 +449,7 @@ export default function Home() {
         </section>
 
         <section id="punto-vendita" className="section-pad bg-ivory">
-          <span className="carousel-hint">Scorri →</span>
-          <div className="wide-grid items-center store-mobile-carousel">
+          <div className="wide-grid items-center">
             <Reveal className="order-2 lg:order-1">
               <span className="eyebrow">Il punto vendita</span>
               <h2 className="section-title text-left">Acquisti direttamente dove il latte diventa formaggio.</h2>
@@ -487,7 +485,7 @@ export default function Home() {
 
         <section className="section-pad bg-cream">
           <SectionTitle kicker="Gallery" title="Dettagli di masseria, laboratorio e prodotti." />
-          <span className="carousel-hint">Scorri →</span>
+          <span className="carousel-arrow" aria-hidden="true">→</span>
           <div className="masonry wide-container peek-carousel gallery-carousel">
             {gallery.map(([src, alt], index) => (
               <Reveal key={`${alt}-${index}`} className={index % 3 === 0 ? "masonry-tall" : ""}>
@@ -503,8 +501,7 @@ export default function Home() {
               <span className="eyebrow">Dove siamo</span>
               <h2 className="section-title text-left">Via Odi 20, Faicchio (BN).</h2>
               <p>Raggiungi il punto vendita in masseria. Per orari del giorno e disponibilita dei prodotti, chiama o scrivi prima di partire.</p>
-              <span className="carousel-hint">Scorri →</span>
-              <div className="contact-list contact-carousel">
+              <div className="contact-list">
                 <a className="contact-card contact-card-primary" href="https://wa.me/393475320807?text=Ciao,%20vorrei%20avere%20informazioni%20sui%20vostri%20prodotti." target="_blank" rel="noopener noreferrer" aria-label="Scrivici su WhatsApp in una nuova scheda">
                   <span className="contact-card-icon"><WhatsAppLogo /></span>
                   <span className="contact-card-text">
