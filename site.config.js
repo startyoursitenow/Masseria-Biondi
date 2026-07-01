@@ -18,11 +18,11 @@ const siteConfig = {
   legalPages: {
     privacy: {
       title: "Privacy Policy",
-      text: "Inserisci qui informativa privacy completa, titolare del trattamento, finalita, basi giuridiche, tempi di conservazione e diritti degli utenti."
+      text: "I dati inviati tramite telefono, email o WhatsApp vengono usati solo per rispondere alle richieste sui prodotti, sugli orari e sul punto vendita. Non sono presenti moduli di raccolta dati nel sito."
     },
     cookie: {
       title: "Cookie Policy",
-      text: "Inserisci qui descrizione cookie tecnici, analitici, marketing, gestione consenso e modalita di modifica preferenze."
+      text: "Il sito usa solo funzionalita tecniche necessarie alla navigazione e incorpora servizi esterni come Google Maps e immagini remote. I servizi esterni possono applicare proprie regole sui cookie quando vengono caricati."
     }
   }
 };

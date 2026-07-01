@@ -481,7 +481,7 @@ export default function Home() {
               <h2 className="section-title text-left">Via Odi 20, Faicchio (BN).</h2>
               <p>Raggiungi il punto vendita in masseria. Per orari del giorno e disponibilita dei prodotti, chiama o scrivi prima di partire.</p>
               <div className="contact-list">
-                <a className="contact-card contact-card-primary" href="https://wa.me/393475320807?text=Ciao,%20vorrei%20avere%20informazioni%20sui%20vostri%20prodotti." aria-label="Scrivici su WhatsApp">
+                <a className="contact-card contact-card-primary" href="https://wa.me/393475320807?text=Ciao,%20vorrei%20avere%20informazioni%20sui%20vostri%20prodotti." target="_blank" rel="noopener noreferrer" aria-label="Scrivici su WhatsApp in una nuova scheda">
                   <span className="contact-card-icon"><WhatsAppLogo /></span>
                   <span className="contact-card-text">
                     <strong>Scrivici su WhatsApp</strong>
@@ -495,7 +495,7 @@ export default function Home() {
                     <small>347 5320807 · 345 3429594</small>
                   </span>
                 </a>
-                <a className="contact-card" href={availabilityHref} aria-label="Chiedi orari e disponibilita dei prodotti su WhatsApp">
+                <a className="contact-card" href={availabilityHref} target="_blank" rel="noopener noreferrer" aria-label="Chiedi orari e disponibilita dei prodotti su WhatsApp in una nuova scheda">
                   <span className="contact-card-icon"><Clock size={20} aria-hidden="true" /></span>
                   <span className="contact-card-text">
                     <strong>Orari e disponibilita</strong>
@@ -556,7 +556,16 @@ export default function Home() {
           </div>
           <div>
             <h3>Seguici</h3>
-            <p>Facebook · Instagram</p>
+            <p className="footer-links">
+              <a href={facebookHref} target="_blank" rel="noopener noreferrer">Facebook</a>
+              <span aria-hidden="true">·</span>
+              <a href={instagramHref} target="_blank" rel="noopener noreferrer">Instagram</a>
+            </p>
+            <p className="footer-links footer-legal">
+              <a href="/privacy-policy">Privacy Policy</a>
+              <span aria-hidden="true">·</span>
+              <a href="/cookie-policy">Cookie Policy</a>
+            </p>
             <p className="copyright">© 2026 Masseria Dei Duchi. Tutti i diritti riservati.</p>
           </div>
         </div>

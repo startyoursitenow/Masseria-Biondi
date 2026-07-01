@@ -6,7 +6,7 @@ export default function PrivacyPolicyPage() {
 
   return (
     <main className="min-h-screen bg-surface py-16">
-      <div className="container-page max-w-3xl">
+      <div className="wide-container max-w-3xl">
         <Link href="/" className="font-bold text-brand-700">
           {siteData.business.name}
         </Link>
