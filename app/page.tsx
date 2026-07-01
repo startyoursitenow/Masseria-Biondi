@@ -181,8 +181,16 @@ export default function Home() {
       if (event.key === "Escape") setOpen(false);
     };
 
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
   }, [open]);
 
   useEffect(() => {
@@ -251,7 +259,7 @@ export default function Home() {
           <button
             type="button"
             className={[
-              "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition md:hidden",
+              "mobile-menu-toggle inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border transition md:hidden",
               scrolled || open ? "border-[#c8a97a]/40 bg-white/80 text-[#3f2a14]" : "border-white/30 text-white",
             ].join(" ")}
             aria-label={open ? "Chiudi menu" : "Apri menu"}
@@ -264,33 +272,42 @@ export default function Home() {
         </nav>
 
         {open && (
-          <motion.nav
-            id="mobile-navigation"
-            aria-label="Navigazione mobile"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.18 }}
-            className="mobile-navigation-panel mx-4 mt-1 rounded-2xl border border-[#c8a97a]/30 p-3 shadow-2xl md:hidden"
+          <motion.div
+            className="mobile-menu-layer md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
           >
-            {navItems.map(([label, href]) => (
+            <button type="button" className="mobile-menu-backdrop" aria-label="Chiudi menu" onClick={() => setOpen(false)} />
+            <motion.nav
+              id="mobile-navigation"
+              aria-label="Navigazione mobile"
+              initial={{ opacity: 0, x: 28 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+              className="mobile-navigation-panel"
+            >
+              <span className="mobile-menu-kicker">Menu</span>
+              {navItems.map(([label, href]) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="mobile-drawer-link"
+                  onClick={() => setOpen(false)}
+                >
+                  {label}
+                </a>
+              ))}
+              <div className="mobile-menu-divider" />
               <a
-                key={label}
-                href={href}
-                className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-[#3f2a14] transition hover:bg-[#f5ece0]"
+                href="#contatti"
+                className="mobile-drawer-cta"
                 onClick={() => setOpen(false)}
               >
-                {label}
+                Vieni al punto vendita
               </a>
-            ))}
-            <div className="my-2 h-px bg-[#c8a97a]/20" />
-            <a
-              href="#contatti"
-              className="flex items-center justify-center rounded-full bg-[#8b1a1a] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#6d1414]"
-              onClick={() => setOpen(false)}
-            >
-              Vieni al punto vendita
-            </a>
-          </motion.nav>
+            </motion.nav>
+          </motion.div>
         )}
       </header>
 
@@ -346,6 +363,7 @@ export default function Home() {
             title="Campagna, stalle e laboratorio nello stesso racconto."
             text="Un luogo concreto, dove allevamento e caseificio convivono e rendono riconoscibile ogni forma di formaggio."
           />
+          <span className="carousel-hint">Scorri →</span>
           <div className="gallery-grid wide-container peek-carousel masseria-carousel">
             {[
               [images.farm, "Esterni della masseria"],
@@ -362,6 +380,7 @@ export default function Home() {
 
         <section className="section-pad bg-cream">
           <SectionTitle kicker="I nostri animali" title="Benessere animale, latte buono, prodotti sinceri." />
+          <span className="carousel-hint">Scorri →</span>
           <div className="wide-container grid gap-6 md:grid-cols-3 peek-carousel animals-carousel">
             {animals.map(([title, text, src]) => (
               <Reveal key={title} className="animal-card">
@@ -389,7 +408,8 @@ export default function Home() {
               </div>
             </Reveal>
             <Reveal>
-              <div className="timeline">
+              <span className="carousel-hint">Scorri →</span>
+              <div className="timeline mobile-step-carousel">
                 {process.map(([title, text], index) => (
                   <div className="timeline-item" key={title}>
                     <span>{index + 1}</span>
@@ -410,6 +430,7 @@ export default function Home() {
             title="Formaggi artigianali, senza listino: prima viene il racconto."
             text="Ogni prodotto cambia con latte, stagionalita e lavorazione. Il punto vendita resta il luogo migliore per scoprirli."
           />
+          <span className="carousel-hint">Scorri →</span>
           <div className="product-rail wide-container touch-carousel">
             {products.map(([name, description, src]) => (
               <Reveal key={name} className="product-card">
@@ -429,7 +450,8 @@ export default function Home() {
         </section>
 
         <section id="punto-vendita" className="section-pad bg-ivory">
-          <div className="wide-grid items-center">
+          <span className="carousel-hint">Scorri →</span>
+          <div className="wide-grid items-center store-mobile-carousel">
             <Reveal className="order-2 lg:order-1">
               <span className="eyebrow">Il punto vendita</span>
               <h2 className="section-title text-left">Acquisti direttamente dove il latte diventa formaggio.</h2>
@@ -465,6 +487,7 @@ export default function Home() {
 
         <section className="section-pad bg-cream">
           <SectionTitle kicker="Gallery" title="Dettagli di masseria, laboratorio e prodotti." />
+          <span className="carousel-hint">Scorri →</span>
           <div className="masonry wide-container peek-carousel gallery-carousel">
             {gallery.map(([src, alt], index) => (
               <Reveal key={`${alt}-${index}`} className={index % 3 === 0 ? "masonry-tall" : ""}>
@@ -480,7 +503,8 @@ export default function Home() {
               <span className="eyebrow">Dove siamo</span>
               <h2 className="section-title text-left">Via Odi 20, Faicchio (BN).</h2>
               <p>Raggiungi il punto vendita in masseria. Per orari del giorno e disponibilita dei prodotti, chiama o scrivi prima di partire.</p>
-              <div className="contact-list">
+              <span className="carousel-hint">Scorri →</span>
+              <div className="contact-list contact-carousel">
                 <a className="contact-card contact-card-primary" href="https://wa.me/393475320807?text=Ciao,%20vorrei%20avere%20informazioni%20sui%20vostri%20prodotti." target="_blank" rel="noopener noreferrer" aria-label="Scrivici su WhatsApp in una nuova scheda">
                   <span className="contact-card-icon"><WhatsAppLogo /></span>
                   <span className="contact-card-text">

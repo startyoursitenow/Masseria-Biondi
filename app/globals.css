@@ -502,20 +502,6 @@ a {
   }
 }
 
-@media (max-width: 759px) {
-  .product-rail {
-    display: flex;
-    overflow-x: auto;
-    padding-bottom: 1rem;
-    scroll-snap-type: x mandatory;
-  }
-
-  .product-card {
-    min-width: 82vw;
-    scroll-snap-align: start;
-  }
-}
-
 .product-card {
   overflow: hidden;
   transition: transform 260ms ease, box-shadow 260ms ease;
@@ -718,6 +704,10 @@ a {
 
 .copyright {
   color: rgba(255, 255, 255, 0.56);
+}
+
+.carousel-hint {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
