@@ -1,0 +1,79 @@
+@media (min-width: 641px) and (max-width: 1023px) {
+  .mobile-navigation-panel {
+    position: relative;
+    z-index: 70;
+    background: #fffaf1;
+    pointer-events: auto;
+  }
+
+  .mobile-navigation-panel a {
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
+  }
+
+  .peek-carousel,
+  .touch-carousel {
+    width: min(1500px, calc(100% - 32px));
+    display: flex;
+    overflow-x: auto;
+    overflow-y: visible;
+    gap: 1rem;
+    padding-right: 14vw;
+    padding-bottom: 1rem;
+    scroll-snap-type: x proximity;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .peek-carousel::-webkit-scrollbar,
+  .touch-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .peek-carousel > *,
+  .touch-carousel > * {
+    flex: 0 0 clamp(320px, 56vw, 440px);
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+
+  .gallery-grid {
+    grid-auto-rows: auto;
+  }
+
+  .gallery-grid .photo-frame,
+  .masonry .photo-frame,
+  .masonry-tall .photo-frame {
+    min-height: 300px;
+  }
+
+  .masonry {
+    columns: auto;
+    column-gap: 0;
+  }
+
+  .masonry > div {
+    margin-bottom: 0;
+    break-inside: auto;
+  }
+
+  .reasons-section {
+    display: none;
+  }
+
+  .contact-panel {
+    order: 1;
+  }
+
+  .map-card {
+    order: 2;
+    min-height: 260px;
+  }
+
+  .map-card iframe {
+    min-height: 260px;
+  }
+}

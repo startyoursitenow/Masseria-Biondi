@@ -1,0 +1,140 @@
+@media (max-width: 640px) {
+  .mobile-navigation-panel {
+    position: relative;
+    z-index: 70;
+    background: #fffaf1;
+    pointer-events: auto;
+  }
+
+  .mobile-navigation-panel a {
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
+  }
+
+  .nav-shell {
+    width: min(100% - 20px, 1320px);
+    min-height: 68px;
+    margin-top: 0.55rem;
+    border-radius: 18px;
+    padding: 0.42rem 0.65rem;
+  }
+
+  .brand-logo {
+    height: 44px;
+    max-width: calc(100vw - 96px);
+  }
+
+  .brand-logo img {
+    width: auto;
+    max-width: calc(100vw - 104px);
+    height: clamp(38px, 10vw, 44px);
+  }
+
+  .hero-content {
+    align-items: end;
+    padding-bottom: 6rem;
+  }
+
+  .scroll-cue {
+    left: 1rem;
+    right: auto;
+  }
+
+  .photo-frame {
+    border-radius: 20px;
+  }
+
+  .peek-carousel,
+  .touch-carousel {
+    width: min(1500px, calc(100% - 32px));
+    display: flex;
+    overflow-x: auto;
+    overflow-y: visible;
+    gap: 0.9rem;
+    padding-right: 18vw;
+    padding-bottom: 1rem;
+    scroll-snap-type: x proximity;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .peek-carousel::-webkit-scrollbar,
+  .touch-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .peek-carousel > *,
+  .touch-carousel > * {
+    flex: 0 0 76vw;
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+
+  .gallery-grid {
+    grid-auto-rows: auto;
+  }
+
+  .gallery-grid .photo-frame,
+  .masonry .photo-frame,
+  .masonry-tall .photo-frame {
+    min-height: 260px;
+  }
+
+  .masonry {
+    columns: auto;
+    column-gap: 0;
+  }
+
+  .masonry > div {
+    margin-bottom: 0;
+    break-inside: auto;
+  }
+
+  .reasons-section {
+    display: none;
+  }
+
+  .contact-panel {
+    order: 1;
+    padding: 1.25rem;
+  }
+
+  .contact-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  .contact-card {
+    min-height: 118px;
+    grid-template-columns: 1fr;
+    align-content: start;
+    gap: 0.55rem;
+    padding: 0.85rem;
+  }
+
+  .contact-card-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .contact-card-text strong {
+    font-size: clamp(1rem, 4.8vw, 1.16rem);
+  }
+
+  .contact-card-text small {
+    font-size: 0.78rem;
+    line-height: 1.28;
+  }
+
+  .map-card {
+    order: 2;
+    min-height: 260px;
+  }
+
+  .map-card iframe {
+    min-height: 260px;
+  }
+}

@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./font-vars.css";
 import "./navbar-scroll-logo.css";
+import "./tablet.css";
+import "./mobile.css";
 
 const siteUrl = "https://masseria-biondi.vercel.app";
 
