@@ -30,11 +30,24 @@ const navItems = [
 ];
 
 const whatsappPrimaryHref = "https://wa.me/393475320807";
+const whatsappSecondaryHref = "https://wa.me/393453429594";
 const facebookHref = "https://www.facebook.com/profile.php?id=100064866903557";
 const instagramHref = "https://www.instagram.com/masseria_dei_duchi/";
 const googleMapsHref = "https://maps.app.goo.gl/jdz2s1dSfHxBAMS46";
 const googleMapsEmbedSrc = "https://www.google.com/maps?q=41.2766677,14.4729861&z=16&output=embed";
 const availabilityHref = "https://wa.me/393475320807?text=Ciao,%20vorrei%20sapere%20orari%20e%20disponibilita%20dei%20prodotti%20di%20oggi.";
+
+const footerQuickLinks = [
+  ["La Masseria", "#masseria"],
+  ["Prodotti", "#prodotti"],
+  ["Punto vendita", "#punto-vendita"],
+  ["Contatti", "#contatti"]
+];
+
+const openingHours = [
+  ["Lun - Sab", "08:30 - 13:00", "16:30 - 20:00"],
+  ["Domenica", "09:00 - 13:00", "Chiuso pomeriggio"]
+];
 
 const images = {
   hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2400&q=85",
@@ -562,33 +575,92 @@ export default function Home() {
       </main>
 
       <footer className="site-footer">
-        <div className="wide-container grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
-          <div>
-            <Image src="/media/footer-logo-masseria-biondi.png" alt="Logo Masseria Dei Duchi" width={220} height={220} className="mb-5 aspect-square w-44 max-w-full rounded-full bg-white object-contain sm:w-52" />
+        <div className="wide-container footer-grid">
+          <div className="footer-brand">
+            <Image src="/media/footer-logo-masseria-biondi.png" alt="Logo Masseria Dei Duchi" width={220} height={220} className="footer-logo" />
             <p>Tradizione casearia, latte dei nostri allevamenti e vendita diretta nel cuore del Sannio.</p>
+            <a className="footer-cta" href={googleMapsHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Google Maps per raggiungere il punto vendita">
+              <MapPin size={18} aria-hidden="true" />
+              Vieni al punto vendita
+            </a>
           </div>
-          <div>
+          <div className="footer-block">
             <h3>Contatti</h3>
-            <address className="not-italic">
-              <p>Via Odi 20, Faicchio (BN)</p>
-              <p>347 5320807 · 345 3429594</p>
-              <p>masseria.deiduchi@gmail.com</p>
+            <address className="footer-contact">
+              <a href={googleMapsHref} target="_blank" rel="noopener noreferrer" aria-label="Apri posizione su Google Maps">
+                <MapPin size={17} aria-hidden="true" />
+                Via Odi 20, Faicchio (BN)
+              </a>
+              <a href="tel:+393475320807" aria-label="Chiama il numero 347 5320807">
+                <Phone size={17} aria-hidden="true" />
+                347 5320807
+              </a>
+              <a href="tel:+393453429594" aria-label="Chiama il numero 345 3429594">
+                <Phone size={17} aria-hidden="true" />
+                345 3429594
+              </a>
+              <a href="mailto:masseria.deiduchi@gmail.com" aria-label="Invia una email a Masseria Dei Duchi">
+                <Mail size={17} aria-hidden="true" />
+                masseria.deiduchi@gmail.com
+              </a>
             </address>
           </div>
-          <div>
-            <h3>Seguici</h3>
-            <p className="footer-links">
-              <a href={facebookHref} target="_blank" rel="noopener noreferrer">Facebook</a>
-              <span aria-hidden="true">·</span>
-              <a href={instagramHref} target="_blank" rel="noopener noreferrer">Instagram</a>
-            </p>
-            <p className="footer-links footer-legal">
-              <a href="/privacy-policy">Privacy Policy</a>
-              <span aria-hidden="true">·</span>
-              <a href="/cookie-policy">Cookie Policy</a>
-            </p>
-            <p className="copyright">© 2026 Masseria Dei Duchi. Tutti i diritti riservati.</p>
+          <div className="footer-block">
+            <h3>Orari indicativi</h3>
+            <p className="footer-note">Per disponibilita prodotti, chiama o scrivi prima di venire.</p>
+            <table className="footer-hours">
+              <tbody>
+                {openingHours.map(([day, morning, afternoon]) => (
+                  <tr key={day}>
+                    <th scope="row">{day}</th>
+                    <td>{morning}</td>
+                    <td>{afternoon}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <a className="footer-whatsapp" href={availabilityHref} target="_blank" rel="noopener noreferrer" aria-label="Scrivi su WhatsApp per verificare orari e disponibilita">
+              <WhatsAppLogo />
+              Verifica disponibilita
+            </a>
           </div>
+
+          <div className="footer-block">
+            <h3>Link utili</h3>
+            <nav className="footer-links" aria-label="Link rapidi footer">
+              {footerQuickLinks.map(([label, href]) => (
+                <a key={label} href={href}>{label}</a>
+              ))}
+            </nav>
+            <h3 className="footer-social-title">Seguici</h3>
+            <div className="footer-social" aria-label="Profili social">
+              <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Facebook Masseria Dei Duchi">
+                <FacebookLogo />
+                Facebook
+              </a>
+              <a href={instagramHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Instagram Masseria Dei Duchi">
+                <InstagramLogo />
+                Instagram
+              </a>
+              <a href={whatsappPrimaryHref} target="_blank" rel="noopener noreferrer" aria-label="Scrivi su WhatsApp al numero 347 5320807">
+                <WhatsAppLogo />
+                WhatsApp
+              </a>
+              <a href={whatsappSecondaryHref} target="_blank" rel="noopener noreferrer" aria-label="Scrivi su WhatsApp al numero 345 3429594">
+                <WhatsAppLogo />
+                WhatsApp 2
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="wide-container footer-bottom">
+          <p>Azienda agricola Biondi Gianluca</p>
+          <nav className="footer-legal" aria-label="Link legali">
+            <a href="/privacy-policy">Privacy Policy</a>
+            <span aria-hidden="true">-</span>
+            <a href="/cookie-policy">Cookie Policy</a>
+          </nav>
+          <p className="copyright">© 2026 Masseria Dei Duchi. Tutti i diritti riservati.</p>
         </div>
       </footer>
     </>
