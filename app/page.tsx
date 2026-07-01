@@ -230,7 +230,7 @@ export default function Home() {
             />
           </a>
 
-          <div className="hidden min-w-0 items-center justify-end gap-0.5 md:flex">
+          <div className="hidden min-w-0 items-center justify-end gap-0.5 lg:flex">
             {navItems.map(([label, href]) => (
               <a
                 key={label}
@@ -259,7 +259,7 @@ export default function Home() {
           <button
             type="button"
             className={[
-              "mobile-menu-toggle inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border transition md:hidden",
+              "mobile-menu-toggle inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border transition lg:hidden",
               scrolled || open ? "border-[#c8a97a]/40 bg-white/80 text-[#3f2a14]" : "border-white/30 text-white",
             ].join(" ")}
             aria-label={open ? "Chiudi menu" : "Apri menu"}
@@ -273,7 +273,7 @@ export default function Home() {
 
         {open && (
           <motion.div
-            className="mobile-menu-layer md:hidden"
+            className="mobile-menu-layer lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
