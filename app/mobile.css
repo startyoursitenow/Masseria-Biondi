@@ -147,6 +147,8 @@
 
   .peek-carousel,
   .touch-carousel {
+    --carousel-gutter: 8vw;
+    --carousel-card: 72vw;
     width: 100vw;
     max-width: 100vw;
     margin-left: calc(50% - 50vw);
@@ -156,9 +158,9 @@
     overflow-x: auto;
     overflow-y: visible;
     gap: 0.9rem;
-    padding-inline: 13vw 18vw;
+    padding-inline: var(--carousel-gutter) calc(100vw - var(--carousel-gutter) - var(--carousel-card));
     padding-bottom: 1rem;
-    scroll-padding-inline: 13vw;
+    scroll-padding-inline: var(--carousel-gutter);
     scroll-snap-type: x mandatory;
     touch-action: pan-x pan-y;
     -webkit-overflow-scrolling: touch;
@@ -174,9 +176,9 @@
 
   .peek-carousel > *,
   .touch-carousel > * {
-    flex: 0 0 74vw;
+    flex: 0 0 var(--carousel-card);
     min-width: 0;
-    scroll-snap-align: center;
+    scroll-snap-align: start;
   }
 
   .carousel-hint {
@@ -184,13 +186,7 @@
   }
 
   .carousel-arrow {
-    width: min(1500px, calc(100% - 32px));
-    display: block;
-    margin: -1.65rem auto 0.9rem;
-    color: var(--gold-dark);
-    font-size: 1.2rem;
-    font-weight: 900;
-    text-align: right;
+    display: none;
   }
 
   .gallery-grid {
