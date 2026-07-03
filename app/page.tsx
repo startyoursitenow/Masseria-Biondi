@@ -207,11 +207,20 @@ export default function Home() {
   }, [open]);
 
   useEffect(() => {
-    const unsub = scrollY.on("change", (v) => {
-      setScrolled((current) => (current ? v > 24 : v > 60));
-    });
-    return () => unsub();
-  }, [scrollY]);
+    const updateScrolled = () => {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      setScrolled((current) => (current ? y > 24 : y > 60));
+    };
+
+    updateScrolled();
+    window.addEventListener("scroll", updateScrolled, { passive: true });
+    window.addEventListener("resize", updateScrolled);
+
+    return () => {
+      window.removeEventListener("scroll", updateScrolled);
+      window.removeEventListener("resize", updateScrolled);
+    };
+  }, []);
 
   return (
     <>

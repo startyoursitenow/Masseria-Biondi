@@ -38,10 +38,12 @@
 
   .mobile-menu-toggle {
     position: relative;
-    z-index: 260;
+    z-index: 520;
     min-width: 44px;
     min-height: 44px;
     pointer-events: auto;
+    cursor: pointer;
+    touch-action: manipulation;
   }
 
   .mobile-menu-toggle svg {
@@ -51,7 +53,7 @@
   .mobile-menu-layer {
     position: fixed;
     inset: 0;
-    z-index: 220;
+    z-index: 500;
     display: grid;
     justify-items: end;
     pointer-events: auto;
@@ -67,7 +69,7 @@
 
   .mobile-navigation-panel {
     position: relative;
-    z-index: 240;
+    z-index: 510;
     width: min(56vw, 420px);
     height: min(76dvh, 620px);
     max-height: calc(100dvh - 1.5rem);
