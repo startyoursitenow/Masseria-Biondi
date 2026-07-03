@@ -18,7 +18,7 @@ import {
   X
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 const navItems = [
   ["Home", "#home"],
@@ -182,50 +182,16 @@ function FacebookLogo() {
 }
 
 export default function Home() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const touchMenuHandled = useRef(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 900], [0, 120]);
 
-  const toggleMenu = () => setOpen((current) => !current);
-
-  const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (touchMenuHandled.current) {
-      event.preventDefault();
-      return;
-    }
-
-    toggleMenu();
-  };
-
-  const handleMenuTouchEnd = (event: React.TouchEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    if (touchMenuHandled.current) return;
-
-    touchMenuHandled.current = true;
-    toggleMenu();
-    window.setTimeout(() => {
-      touchMenuHandled.current = false;
-    }, 350);
-  };
-
-  const handleMenuPointerUp = (event: React.PointerEvent<HTMLButtonElement>) => {
-    if (event.pointerType === "touch" || event.pointerType === "pen") {
-      event.preventDefault();
-      touchMenuHandled.current = true;
-      toggleMenu();
-      window.setTimeout(() => {
-        touchMenuHandled.current = false;
-      }, 350);
-    }
-  };
-
   useEffect(() => {
-    if (!open) return;
+    if (!isMenuOpen) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") setIsMenuOpen(false);
     };
 
     const previousBodyOverflow = document.body.style.overflow;
@@ -238,25 +204,18 @@ export default function Home() {
       document.documentElement.style.overflow = previousHtmlOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [open]);
+  }, [isMenuOpen]);
 
   useEffect(() => {
     const updateScrolled = () => {
-      const y = window.scrollY || document.documentElement.scrollTop || 0;
-      setScrolled((current) => (current ? y > 24 : y > 60));
+      setIsScrolled(window.scrollY > 20);
     };
 
     updateScrolled();
     window.addEventListener("scroll", updateScrolled, { passive: true });
-    window.addEventListener("resize", updateScrolled);
-    document.addEventListener("scroll", updateScrolled, { passive: true, capture: true });
-    window.visualViewport?.addEventListener("resize", updateScrolled);
 
     return () => {
       window.removeEventListener("scroll", updateScrolled);
-      window.removeEventListener("resize", updateScrolled);
-      document.removeEventListener("scroll", updateScrolled, { capture: true });
-      window.visualViewport?.removeEventListener("resize", updateScrolled);
     };
   }, []);
 
@@ -266,10 +225,10 @@ export default function Home() {
         Salta al contenuto principale
       </a>
       <header
-        data-menu-open={open ? "true" : "false"}
+        data-menu-open={isMenuOpen ? "true" : "false"}
         className={[
           "fixed inset-x-0 top-0 z-50 w-full transition-all duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-          scrolled || open
+          isScrolled || isMenuOpen
             ? "nav-scrolled border-b border-white/20 bg-[#fffaf1]/95 shadow-[0_2px_20px_rgba(0,0,0,0.07)] backdrop-blur-sm"
             : "nav-top border-b border-transparent bg-transparent",
         ].join(" ")}
@@ -298,7 +257,7 @@ export default function Home() {
                 href={href}
                 className={[
                   "rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors lg:px-3",
-                  scrolled
+                  isScrolled
                     ? "text-[#3f2a14]/80 hover:bg-[#f5ece0] hover:text-[#3f2a14]"
                     : "text-white/85 hover:bg-white/10 hover:text-white",
                 ].join(" ")}
@@ -307,7 +266,7 @@ export default function Home() {
               </a>
             ))}
 
-            <span className={["mx-2 h-4 w-px shrink-0", scrolled ? "bg-[#c8a97a]/40" : "bg-white/20"].join(" ")} aria-hidden />
+            <span className={["mx-2 h-4 w-px shrink-0", isScrolled ? "bg-[#c8a97a]/40" : "bg-white/20"].join(" ")} aria-hidden />
 
             <a
               href="#contatti"
@@ -321,27 +280,25 @@ export default function Home() {
             type="button"
             className={[
               "mobile-menu-toggle h-11 w-11 shrink-0 items-center justify-center rounded-lg border transition",
-              scrolled || open ? "border-[#c8a97a]/40 bg-white/80 text-[#3f2a14]" : "border-white/30 text-white",
+              isScrolled || isMenuOpen ? "border-[#c8a97a]/40 bg-white/80 text-[#3f2a14]" : "border-white/30 text-white",
             ].join(" ")}
-            aria-label={open ? "Chiudi menu" : "Apri menu"}
-            aria-expanded={open}
+            aria-label={isMenuOpen ? "Chiudi menu" : "Apri menu"}
+            aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"
-            onClick={handleMenuClick}
-            onPointerUp={handleMenuPointerUp}
-            onTouchEnd={handleMenuTouchEnd}
+            onClick={() => setIsMenuOpen((prev) => !prev)}
           >
-            {open ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
+            {isMenuOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
           </button>
         </nav>
 
-        {open && (
+        {isMenuOpen && (
           <motion.div
             className="mobile-menu-layer"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
           >
-            <button type="button" className="mobile-menu-backdrop" aria-label="Chiudi menu" onClick={() => setOpen(false)} />
+            <button type="button" className="mobile-menu-backdrop" aria-label="Chiudi menu" onClick={() => setIsMenuOpen(false)} />
             <motion.nav
               id="mobile-navigation"
               aria-label="Navigazione mobile"
@@ -356,7 +313,7 @@ export default function Home() {
                   key={label}
                   href={href}
                   className="mobile-drawer-link"
-                  onClick={() => setOpen(false)}
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   {label}
                 </a>
@@ -365,7 +322,7 @@ export default function Home() {
               <a
                 href="#contatti"
                 className="mobile-drawer-cta"
-                onClick={() => setOpen(false)}
+                onClick={() => setIsMenuOpen(false)}
               >
                 Vieni al punto vendita
               </a>

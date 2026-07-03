@@ -25,10 +25,6 @@
     backdrop-filter: blur(14px);
   }
 
-  header > nav {
-    pointer-events: none;
-  }
-
   header.nav-scrolled > nav,
   header[data-menu-open="true"] > nav {
     border-bottom: 1px solid rgba(176, 138, 74, 0.22);
@@ -67,10 +63,8 @@
   }
 
   .mobile-menu-toggle {
-    position: fixed !important;
-    top: clamp(1rem, 2.2vw, 1.35rem);
-    right: clamp(1rem, 2.4vw, 1.6rem);
-    z-index: 2147483000;
+    position: relative;
+    z-index: 1200;
     min-width: 44px;
     min-height: 44px;
     display: inline-flex !important;
@@ -91,7 +85,7 @@
   .mobile-menu-layer {
     position: fixed;
     inset: 0;
-    z-index: 2147482000;
+    z-index: 1300;
     display: grid;
     justify-items: end;
     pointer-events: auto;
@@ -109,7 +103,7 @@
     position: fixed;
     top: 0.75rem;
     right: 0.75rem;
-    z-index: 2147482500;
+    z-index: 1310;
     width: min(56vw, 420px);
     height: min(76dvh, 620px);
     max-height: calc(100dvh - 1.5rem);
