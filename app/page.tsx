@@ -591,12 +591,12 @@ export default function Home() {
                 <MapPin size={17} aria-hidden="true" />
                 Via Odi 20, Faicchio (BN)
               </a>
-              <a href="tel:+393475320807" aria-label="Chiama il numero 347 5320807">
-                <Phone size={17} aria-hidden="true" />
+              <a href={whatsappPrimaryHref} target="_blank" rel="noopener noreferrer" aria-label="Scrivi su WhatsApp al numero 347 5320807">
+                <WhatsAppLogo />
                 347 5320807
               </a>
-              <a href="tel:+393453429594" aria-label="Chiama il numero 345 3429594">
-                <Phone size={17} aria-hidden="true" />
+              <a href={whatsappSecondaryHref} target="_blank" rel="noopener noreferrer" aria-label="Scrivi su WhatsApp al numero 345 3429594">
+                <WhatsAppLogo />
                 345 3429594
               </a>
               <a href="mailto:masseria.deiduchi@gmail.com" aria-label="Invia una email a Masseria Dei Duchi">
@@ -619,10 +619,6 @@ export default function Home() {
                 ))}
               </tbody>
             </table>
-            <a className="footer-whatsapp" href={availabilityHref} target="_blank" rel="noopener noreferrer" aria-label="Scrivi su WhatsApp per verificare orari e disponibilita">
-              <WhatsAppLogo />
-              Verifica disponibilita
-            </a>
           </div>
 
           <div className="footer-block">
@@ -641,14 +637,6 @@ export default function Home() {
               <a href={instagramHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Instagram Masseria Dei Duchi">
                 <InstagramLogo />
                 Instagram
-              </a>
-              <a href={whatsappPrimaryHref} target="_blank" rel="noopener noreferrer" aria-label="Scrivi su WhatsApp al numero 347 5320807">
-                <WhatsAppLogo />
-                WhatsApp
-              </a>
-              <a href={whatsappSecondaryHref} target="_blank" rel="noopener noreferrer" aria-label="Scrivi su WhatsApp al numero 345 3429594">
-                <WhatsAppLogo />
-                WhatsApp 2
               </a>
             </div>
           </div>
