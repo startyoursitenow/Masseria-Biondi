@@ -78,6 +78,10 @@
     -webkit-touch-callout: none;
   }
 
+  header[data-menu-open="true"] .mobile-menu-toggle {
+    pointer-events: auto;
+  }
+
   .mobile-menu-toggle svg {
     transition: transform 180ms ease, opacity 180ms ease;
   }
@@ -89,6 +93,8 @@
     display: grid;
     justify-items: end;
     pointer-events: auto;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
   .mobile-menu-backdrop {
@@ -117,6 +123,8 @@
     padding: 4.25rem 1.1rem 1.2rem;
     box-shadow: 0 26px 80px rgba(33, 23, 19, 0.22);
     pointer-events: auto;
+    opacity: 1 !important;
+    visibility: visible !important;
     overflow-y: auto;
   }
 

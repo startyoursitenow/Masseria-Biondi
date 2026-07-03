@@ -187,6 +187,17 @@ export default function Home() {
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 900], [0, 120]);
 
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
+  const handleMenuPointerDown = (event: React.PointerEvent<HTMLButtonElement>) => {
+    if (event.pointerType !== "mouse") {
+      event.preventDefault();
+      toggleMenu();
+    }
+  };
+
   useEffect(() => {
     if (!isMenuOpen) return;
 
@@ -208,14 +219,17 @@ export default function Home() {
 
   useEffect(() => {
     const updateScrolled = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      setIsScrolled(scrollTop > 20);
     };
 
     updateScrolled();
     window.addEventListener("scroll", updateScrolled, { passive: true });
+    document.addEventListener("scroll", updateScrolled, { passive: true, capture: true });
 
     return () => {
       window.removeEventListener("scroll", updateScrolled);
+      document.removeEventListener("scroll", updateScrolled, { capture: true });
     };
   }, []);
 
@@ -285,7 +299,8 @@ export default function Home() {
             aria-label={isMenuOpen ? "Chiudi menu" : "Apri menu"}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"
-            onClick={() => setIsMenuOpen((prev) => !prev)}
+            onClick={toggleMenu}
+            onPointerDown={handleMenuPointerDown}
           >
             {isMenuOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
           </button>
