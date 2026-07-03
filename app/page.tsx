@@ -201,11 +201,24 @@ export default function Home() {
 
   const handleMenuTouchEnd = (event: React.TouchEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    if (touchMenuHandled.current) return;
+
     touchMenuHandled.current = true;
     toggleMenu();
     window.setTimeout(() => {
       touchMenuHandled.current = false;
     }, 350);
+  };
+
+  const handleMenuPointerUp = (event: React.PointerEvent<HTMLButtonElement>) => {
+    if (event.pointerType === "touch" || event.pointerType === "pen") {
+      event.preventDefault();
+      touchMenuHandled.current = true;
+      toggleMenu();
+      window.setTimeout(() => {
+        touchMenuHandled.current = false;
+      }, 350);
+    }
   };
 
   useEffect(() => {
@@ -236,10 +249,14 @@ export default function Home() {
     updateScrolled();
     window.addEventListener("scroll", updateScrolled, { passive: true });
     window.addEventListener("resize", updateScrolled);
+    document.addEventListener("scroll", updateScrolled, { passive: true, capture: true });
+    window.visualViewport?.addEventListener("resize", updateScrolled);
 
     return () => {
       window.removeEventListener("scroll", updateScrolled);
       window.removeEventListener("resize", updateScrolled);
+      document.removeEventListener("scroll", updateScrolled, { capture: true });
+      window.visualViewport?.removeEventListener("resize", updateScrolled);
     };
   }, []);
 
@@ -249,6 +266,7 @@ export default function Home() {
         Salta al contenuto principale
       </a>
       <header
+        data-menu-open={open ? "true" : "false"}
         className={[
           "fixed inset-x-0 top-0 z-50 w-full transition-all duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
           scrolled || open
@@ -309,6 +327,7 @@ export default function Home() {
             aria-expanded={open}
             aria-controls="mobile-navigation"
             onClick={handleMenuClick}
+            onPointerUp={handleMenuPointerUp}
             onTouchEnd={handleMenuTouchEnd}
           >
             {open ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
