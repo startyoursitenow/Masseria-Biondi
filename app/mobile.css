@@ -112,6 +112,17 @@
     box-shadow: 0 16px 32px rgba(100, 16, 22, 0.2);
   }
 
+  .footer-links-social {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .footer-social-title {
+    margin-top: 0;
+  }
+
   .nav-shell {
     width: min(100% - 20px, 1320px);
     min-height: 68px;

@@ -11,6 +11,10 @@
     max-width: 100vw;
   }
 
+  header {
+    z-index: 1000 !important;
+  }
+
   .hero-content,
   .hero-content > *,
   .hero-content [style],
@@ -38,7 +42,7 @@
 
   .mobile-menu-toggle {
     position: relative;
-    z-index: 520;
+    z-index: 1030;
     min-width: 44px;
     min-height: 44px;
     pointer-events: auto;
@@ -53,7 +57,7 @@
   .mobile-menu-layer {
     position: fixed;
     inset: 0;
-    z-index: 500;
+    z-index: 1010;
     display: grid;
     justify-items: end;
     pointer-events: auto;
@@ -69,7 +73,7 @@
 
   .mobile-navigation-panel {
     position: relative;
-    z-index: 510;
+    z-index: 1020;
     width: min(56vw, 420px);
     height: min(76dvh, 620px);
     max-height: calc(100dvh - 1.5rem);
@@ -263,6 +267,17 @@
   .footer-links,
   .footer-social {
     display: grid;
+  }
+
+  .footer-links-social {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .footer-social-title {
+    margin-top: 0;
   }
 
   .footer-bottom {

@@ -18,7 +18,7 @@ import {
   X
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const navItems = [
   ["Home", "#home"],
@@ -184,8 +184,29 @@ function FacebookLogo() {
 export default function Home() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const touchMenuHandled = useRef(false);
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 900], [0, 120]);
+
+  const toggleMenu = () => setOpen((current) => !current);
+
+  const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (touchMenuHandled.current) {
+      event.preventDefault();
+      return;
+    }
+
+    toggleMenu();
+  };
+
+  const handleMenuTouchEnd = (event: React.TouchEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    touchMenuHandled.current = true;
+    toggleMenu();
+    window.setTimeout(() => {
+      touchMenuHandled.current = false;
+    }, 350);
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -287,7 +308,8 @@ export default function Home() {
             aria-label={open ? "Chiudi menu" : "Apri menu"}
             aria-expanded={open}
             aria-controls="mobile-navigation"
-            onClick={() => setOpen(!open)}
+            onClick={handleMenuClick}
+            onTouchEnd={handleMenuTouchEnd}
           >
             {open ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
           </button>
@@ -631,22 +653,28 @@ export default function Home() {
           </div>
 
           <div className="footer-block">
-            <h3>Link utili</h3>
-            <nav className="footer-links" aria-label="Link rapidi footer">
-              {footerQuickLinks.map(([label, href]) => (
-                <a key={label} href={href}>{label}</a>
-              ))}
-            </nav>
-            <h3 className="footer-social-title">Seguici</h3>
-            <div className="footer-social" aria-label="Profili social">
-              <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Facebook Masseria Dei Duchi">
-                <FacebookLogo />
-                Facebook
-              </a>
-              <a href={instagramHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Instagram Masseria Dei Duchi">
-                <InstagramLogo />
-                Instagram
-              </a>
+            <div className="footer-links-social">
+              <div>
+                <h3>Link utili</h3>
+                <nav className="footer-links" aria-label="Link rapidi footer">
+                  {footerQuickLinks.map(([label, href]) => (
+                    <a key={label} href={href}>{label}</a>
+                  ))}
+                </nav>
+              </div>
+              <div>
+                <h3 className="footer-social-title">Seguici</h3>
+                <div className="footer-social" aria-label="Profili social">
+                  <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Facebook Masseria Dei Duchi">
+                    <FacebookLogo />
+                    Facebook
+                  </a>
+                  <a href={instagramHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Instagram Masseria Dei Duchi">
+                    <InstagramLogo />
+                    Instagram
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
