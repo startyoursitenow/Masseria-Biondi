@@ -1,4 +1,4 @@
-@media (min-width: 641px) and (max-width: 1023px) {
+@media (min-width: 641px) and (max-width: 1179px) {
   .mobile-menu-toggle {
     position: relative;
     z-index: 90;
@@ -191,5 +191,46 @@
 
   .map-card iframe {
     min-height: 260px;
+  }
+
+  .site-footer,
+  .footer-grid,
+  .footer-brand,
+  .footer-block,
+  .footer-bottom {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 2.25rem;
+  }
+
+  .footer-logo {
+    display: block;
+    width: clamp(10rem, 22vw, 12.5rem);
+    height: auto;
+  }
+
+  .footer-brand,
+  .footer-block {
+    display: block;
+  }
+
+  .footer-contact,
+  .footer-links,
+  .footer-social {
+    display: grid;
+  }
+
+  .footer-bottom {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .footer-bottom .copyright {
+    grid-column: 1 / -1;
   }
 }

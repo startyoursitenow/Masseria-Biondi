@@ -56,6 +56,25 @@ a {
   touch-action: manipulation;
 }
 
+.desktop-nav {
+  display: none;
+}
+
+.mobile-menu-toggle {
+  display: inline-flex;
+}
+
+@media (min-width: 1180px) {
+  .desktop-nav {
+    display: flex;
+  }
+
+  .mobile-menu-toggle,
+  .mobile-menu-layer {
+    display: none !important;
+  }
+}
+
 :focus-visible {
   outline: 3px solid rgba(176, 138, 74, 0.9);
   outline-offset: 4px;
