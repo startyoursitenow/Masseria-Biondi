@@ -68,7 +68,7 @@ header.nav-scrolled > nav > a[aria-label="Masseria Dei Duchi home"] {
 
 @media (min-width: 1024px) and (max-height: 900px) {
   header > nav > a[aria-label="Masseria Dei Duchi home"] {
-    transform: translateY(-14%) scale(1.86);
+    transform: translateY(-18%) scale(1.86);
   }
 }
 
