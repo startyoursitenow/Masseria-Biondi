@@ -18,7 +18,7 @@ import {
   X
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, type MouseEvent } from "react";
 
 const navItems = [
   ["Home", "#home"],
@@ -150,11 +150,17 @@ function Photo({
   priority?: boolean;
   sizes?: string;
 }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
-    <div className={`photo-frame ${className}`}>
-      <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className="object-cover" />
+    <div className={`photo-frame ${isLoaded ? "is-loaded" : "is-loading"} ${className}`}>
+      <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className="object-cover" onLoad={() => setIsLoaded(true)} />
     </div>
   );
+}
+
+function MicroLoader() {
+  return <span className="micro-loader" aria-hidden="true" />;
 }
 
 function WhatsAppLogo() {
@@ -184,6 +190,9 @@ function FacebookLogo() {
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
+  const [isHeroLoaded, setIsHeroLoaded] = useState(false);
+  const [loadingHref, setLoadingHref] = useState<string | null>(null);
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 900], [0, 120]);
 
@@ -196,6 +205,32 @@ export default function Home() {
       event.preventDefault();
       toggleMenu();
     }
+  };
+
+  const handleTimedLink = (event: MouseEvent<HTMLAnchorElement>, href: string, target?: string) => {
+    event.preventDefault();
+    setLoadingHref(href);
+
+    window.setTimeout(() => {
+      setLoadingHref(null);
+
+      if (href.startsWith("#")) {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          window.location.hash = href.slice(1);
+        }
+        return;
+      }
+
+      if (target === "_blank") {
+        window.open(href, "_blank", "noopener,noreferrer");
+        return;
+      }
+
+      window.location.href = href;
+    }, 650);
   };
 
   useEffect(() => {
@@ -233,11 +268,21 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsInitialLoading(false), 1100);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <a href="#main-content" className="skip-link">
         Salta al contenuto principale
       </a>
+      {isInitialLoading ? (
+        <div className="initial-progress" aria-hidden="true">
+          <span />
+        </div>
+      ) : null}
       <header
         data-menu-open={isMenuOpen ? "true" : "false"}
         className={[
@@ -348,8 +393,8 @@ export default function Home() {
 
       <main id="main-content">
         <section id="home" className="hero-section">
-          <motion.div style={{ y: heroY }} className="absolute inset-0">
-            <Image src={images.hero} alt="Masseria nel verde del Sannio con campi e pascoli" fill priority sizes="100vw" className="object-cover" />
+          <motion.div style={{ y: heroY }} className={`hero-media absolute inset-0 ${isHeroLoaded ? "is-loaded" : "is-loading"}`}>
+            <Image src={images.hero} alt="Masseria nel verde del Sannio con campi e pascoli" fill priority sizes="100vw" className="object-cover" onLoad={() => setIsHeroLoaded(true)} />
           </motion.div>
           <div className="hero-overlay" />
           <div className="hero-content">
@@ -358,8 +403,16 @@ export default function Home() {
               <h1>Dal nostro allevamento alla tua tavola.</h1>
               <p>Una filiera corta che garantisce freschezza, autenticità e sapori genuini.</p>
               <div className="flex flex-col gap-3 pt-4 sm:flex-row">
-                <a href="#contatti" className="button-primary">
-                  Vieni al punto vendita <ArrowRight size={18} aria-hidden="true" />
+                <a href="#contatti" className="button-primary" onClick={(event) => handleTimedLink(event, "#contatti")}>
+                  {loadingHref === "#contatti" ? (
+                    <>
+                      <MicroLoader /> Apertura...
+                    </>
+                  ) : (
+                    <>
+                      Vieni al punto vendita <ArrowRight size={18} aria-hidden="true" />
+                    </>
+                  )}
                 </a>
                 <a href="#prodotti" className="button-secondary">
                   Scopri i prodotti
@@ -477,8 +530,16 @@ export default function Home() {
             ))}
           </div>
           <div className="wide-container mt-10 flex justify-center">
-            <a href="#punto-vendita" className="button-primary">
-              Scegli in masseria <ArrowRight size={18} aria-hidden="true" />
+            <a href="#punto-vendita" className="button-primary" onClick={(event) => handleTimedLink(event, "#punto-vendita")}>
+              {loadingHref === "#punto-vendita" ? (
+                <>
+                  <MicroLoader /> Apertura...
+                </>
+              ) : (
+                <>
+                  Scegli in masseria <ArrowRight size={18} aria-hidden="true" />
+                </>
+              )}
             </a>
           </div>
         </section>
@@ -495,8 +556,16 @@ export default function Home() {
                 <Clock size={22} aria-hidden="true" />
                 <span>Disponibilita variabile: chiama o scrivi su WhatsApp prima di venire.</span>
               </div>
-              <a href="#contatti" className="button-primary mt-8 w-fit">
-                Apri contatti e mappa <ArrowRight size={18} aria-hidden="true" />
+              <a href="#contatti" className="button-primary mt-8 w-fit" onClick={(event) => handleTimedLink(event, "#contatti")}>
+                {loadingHref === "#contatti" ? (
+                  <>
+                    <MicroLoader /> Apertura...
+                  </>
+                ) : (
+                  <>
+                    Apri contatti e mappa <ArrowRight size={18} aria-hidden="true" />
+                  </>
+                )}
               </a>
             </Reveal>
             <Reveal className="order-1 lg:order-2">
@@ -537,10 +606,10 @@ export default function Home() {
               <h2 className="section-title text-left">Via Odi 20, Faicchio (BN).</h2>
               <p>Raggiungi il punto vendita in masseria. Per orari del giorno e disponibilita dei prodotti, chiama o scrivi prima di partire.</p>
               <div className="contact-list">
-                <a className="contact-card contact-card-primary" href="https://wa.me/393475320807?text=Ciao,%20vorrei%20avere%20informazioni%20sui%20vostri%20prodotti." target="_blank" rel="noopener noreferrer" aria-label="Scrivici su WhatsApp in una nuova scheda">
+                <a className="contact-card contact-card-primary" href="https://wa.me/393475320807?text=Ciao,%20vorrei%20avere%20informazioni%20sui%20vostri%20prodotti." target="_blank" rel="noopener noreferrer" aria-label="Scrivici su WhatsApp in una nuova scheda" onClick={(event) => handleTimedLink(event, "https://wa.me/393475320807?text=Ciao,%20vorrei%20avere%20informazioni%20sui%20vostri%20prodotti.", "_blank")}>
                   <span className="contact-card-icon"><WhatsAppLogo /></span>
                   <span className="contact-card-text">
-                    <strong>Scrivici su WhatsApp</strong>
+                    <strong>{loadingHref === "https://wa.me/393475320807?text=Ciao,%20vorrei%20avere%20informazioni%20sui%20vostri%20prodotti." ? <><MicroLoader /> Apertura...</> : "Scrivici su WhatsApp"}</strong>
                     <small>Rispondiamo rapidamente.</small>
                   </span>
                 </a>
@@ -551,10 +620,10 @@ export default function Home() {
                     <small>347 5320807 · 345 3429594</small>
                   </span>
                 </a>
-                <a className="contact-card" href={availabilityHref} target="_blank" rel="noopener noreferrer" aria-label="Chiedi orari e disponibilita dei prodotti su WhatsApp in una nuova scheda">
+                <a className="contact-card" href={availabilityHref} target="_blank" rel="noopener noreferrer" aria-label="Chiedi orari e disponibilita dei prodotti su WhatsApp in una nuova scheda" onClick={(event) => handleTimedLink(event, availabilityHref, "_blank")}>
                   <span className="contact-card-icon"><Clock size={20} aria-hidden="true" /></span>
                   <span className="contact-card-text">
-                    <strong>Orari e disponibilita</strong>
+                    <strong>{loadingHref === availabilityHref ? <><MicroLoader /> Apertura...</> : "Orari e disponibilita"}</strong>
                     <small>Chiedi prima di partire.</small>
                   </span>
                 </a>
@@ -580,8 +649,16 @@ export default function Home() {
                   </span>
                 </a>
               </div>
-              <a className="button-primary mt-8 w-fit" href={googleMapsHref} target="_blank" rel="noopener noreferrer" aria-label="Apri posizione della Masseria Dei Duchi su Google Maps in una nuova scheda">
-                Apri su Google Maps <MapPin size={18} aria-hidden="true" />
+              <a className="button-primary mt-8 w-fit" href={googleMapsHref} target="_blank" rel="noopener noreferrer" aria-label="Apri posizione della Masseria Dei Duchi su Google Maps in una nuova scheda" onClick={(event) => handleTimedLink(event, googleMapsHref, "_blank")}>
+                {loadingHref === googleMapsHref ? (
+                  <>
+                    <MicroLoader /> Apertura...
+                  </>
+                ) : (
+                  <>
+                    Apri su Google Maps <MapPin size={18} aria-hidden="true" />
+                  </>
+                )}
               </a>
             </Reveal>
             <Reveal className="map-card">
@@ -601,9 +678,17 @@ export default function Home() {
           <div className="footer-brand">
             <Image src="/media/footer-logo-masseria-biondi.png" alt="Logo Masseria Dei Duchi" width={220} height={220} className="footer-logo" />
             <p>Tradizione casearia, latte dei nostri allevamenti e vendita diretta nel cuore del Sannio.</p>
-            <a className="footer-cta" href={googleMapsHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Google Maps per raggiungere il punto vendita">
-              <MapPin size={18} aria-hidden="true" />
-              Vieni al punto vendita
+            <a className="footer-cta" href={googleMapsHref} target="_blank" rel="noopener noreferrer" aria-label="Apri Google Maps per raggiungere il punto vendita" onClick={(event) => handleTimedLink(event, googleMapsHref, "_blank")}>
+              {loadingHref === googleMapsHref ? (
+                <>
+                  <MicroLoader /> Apertura...
+                </>
+              ) : (
+                <>
+                  <MapPin size={18} aria-hidden="true" />
+                  Vieni al punto vendita
+                </>
+              )}
             </a>
           </div>
           <div className="footer-block">
