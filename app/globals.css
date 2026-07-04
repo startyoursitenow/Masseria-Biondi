@@ -305,6 +305,10 @@ a {
   padding-top: 6rem;
 }
 
+.hero-content > div {
+  margin-top: clamp(24px, 4vh, 56px);
+}
+
 .hero-kicker,
 .eyebrow {
   display: inline-flex;
