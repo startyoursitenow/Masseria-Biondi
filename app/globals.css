@@ -306,7 +306,7 @@ a {
 }
 
 .hero-content > div {
-  margin-top: clamp(24px, 4vh, 56px);
+  margin-top: clamp(34px, 5vh, 72px);
 }
 
 .hero-kicker,
