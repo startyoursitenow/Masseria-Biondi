@@ -348,29 +348,7 @@ a {
 }
 
 .scroll-cue {
-  position: absolute;
-  right: clamp(1.5rem, 4vw, 4rem);
-  bottom: 2rem;
-  z-index: 2;
-  min-width: 54px;
-  min-height: 54px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.42);
-  border-radius: 999px;
-  color: #fff;
-  animation: floatCue 2.6s ease-in-out infinite;
-}
-
-@keyframes floatCue {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(8px);
-  }
+  display: none !important;
 }
 
 .section-title {
