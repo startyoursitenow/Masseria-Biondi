@@ -6,8 +6,9 @@ header > nav {
 }
 
 header > nav > a[aria-label="Masseria Dei Duchi home"] {
+  --logo-open-scale: 1.22;
   top: 50%;
-  transform: translateY(-38%) scale(1.22);
+  transform: translateY(-38%) scale(var(--logo-open-scale));
   transform-origin: center center;
   z-index: 10;
   overflow: visible;
@@ -17,6 +18,10 @@ header > nav > a[aria-label="Masseria Dei Duchi home"] {
 }
 
 header > nav > a[aria-label="Masseria Dei Duchi home"] img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: calc((100dvh - 60px) / var(--logo-open-scale));
   object-fit: contain;
 }
 
@@ -30,7 +35,8 @@ header.nav-scrolled > nav > a[aria-label="Masseria Dei Duchi home"] {
 
 @media (min-width: 641px) {
   header > nav > a[aria-label="Masseria Dei Duchi home"] {
-    transform: translateY(-22%) scale(1.5);
+    --logo-open-scale: 1.5;
+    transform: translateY(-22%) scale(var(--logo-open-scale));
   }
 
   header.nav-scrolled > nav > a[aria-label="Masseria Dei Duchi home"] {
@@ -54,7 +60,8 @@ header.nav-scrolled > nav > a[aria-label="Masseria Dei Duchi home"] {
   }
 
   header > nav > a[aria-label="Masseria Dei Duchi home"] {
-    transform: translateY(-8%) scale(1.86);
+    --logo-open-scale: clamp(1.5, calc((100dvh - 56px) / 390), 1.86);
+    transform: translateY(-8%) scale(var(--logo-open-scale));
   }
 
   header.nav-scrolled > nav {
