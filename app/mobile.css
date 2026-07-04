@@ -143,8 +143,9 @@
   }
 
   .hero-content {
-    align-items: end;
-    padding-bottom: 6rem;
+    align-items: flex-start;
+    justify-content: center;
+    padding-bottom: 0;
   }
 
   .scroll-cue {

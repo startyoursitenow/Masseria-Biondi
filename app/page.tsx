@@ -50,7 +50,7 @@ const openingHours = [
 ];
 
 const images = {
-  hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2400&q=85",
+  hero: "/media/hero-masseria-sannio.webp",
   family: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1400&q=85",
   farm: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1600&q=85",
   pasture: "https://images.unsplash.com/photo-1527153857715-3908f2bae5e8?auto=format&fit=crop&w=1600&q=85",
@@ -394,11 +394,22 @@ export default function Home() {
       <main id="main-content">
         <section id="home" className="hero-section">
           <motion.div style={{ y: heroY }} className={`hero-media absolute inset-0 ${isHeroLoaded ? "is-loaded" : "is-loading"}`}>
-            <Image src={images.hero} alt="Masseria nel verde del Sannio con campi e pascoli" fill priority sizes="100vw" className="object-cover" onLoad={() => setIsHeroLoaded(true)} />
+            <Image
+              src={images.hero}
+              alt="Caseificio Masseria Dei Duchi con stalla, mucche e colline del Sannio"
+              fill
+              priority
+              fetchPriority="high"
+              loading="eager"
+              decoding="async"
+              sizes="100vw"
+              className="hero-image object-cover"
+              onLoad={() => setIsHeroLoaded(true)}
+            />
           </motion.div>
           <div className="hero-overlay" />
           <div className="hero-content">
-            <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} className="max-w-5xl">
+            <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} className="hero-copy">
               <span className="hero-kicker">Caseificio Artigianale · Faicchio (BN)</span>
               <h1>Dal nostro allevamento alla tua tavola.</h1>
               <p>Una filiera corta che garantisce freschezza, autenticità e sapori genuini.</p>

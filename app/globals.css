@@ -365,6 +365,7 @@ a {
 
 .hero-section {
   position: relative;
+  min-height: 100vh;
   min-height: 100dvh;
   overflow: hidden;
   color: #fff;
@@ -373,23 +374,31 @@ a {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(90deg, rgba(25, 13, 10, 0.78), rgba(25, 13, 10, 0.48), rgba(25, 13, 10, 0.16)),
-    linear-gradient(180deg, rgba(25, 13, 10, 0.24), rgba(25, 13, 10, 0.62));
+  background: linear-gradient(
+    90deg,
+    rgba(20, 10, 5, 0.72) 0%,
+    rgba(20, 10, 5, 0.48) 35%,
+    rgba(20, 10, 5, 0.2) 65%,
+    rgba(20, 10, 5, 0.1) 100%
+  );
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
   width: min(1500px, calc(100% - 32px));
+  min-height: 100vh;
   min-height: 100dvh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   margin-inline: auto;
   padding-top: 6rem;
 }
 
-.hero-content > div {
+.hero-copy {
+  max-width: 620px;
   margin-top: clamp(34px, 5vh, 72px);
 }
 
@@ -409,7 +418,7 @@ a {
 }
 
 .hero-content h1 {
-  max-width: 950px;
+  max-width: 620px;
   margin: 1rem 0;
   font-family: var(--font-display), serif;
   font-size: clamp(3.4rem, 8vw, 8.75rem);
@@ -425,7 +434,7 @@ a {
 }
 
 .hero-content p {
-  max-width: 780px;
+  max-width: 620px;
   color: rgba(255, 255, 255, 0.9);
   font-size: clamp(1.1rem, 2vw, 1.45rem);
   line-height: 1.65;
@@ -466,6 +475,27 @@ a {
 .hero-media {
   overflow: hidden;
   background: #eadfce;
+}
+
+.hero-image {
+  object-fit: cover;
+  object-position: center center;
+}
+
+@media (min-width: 641px) and (max-width: 1179px) {
+  .hero-image {
+    object-position: 60% center;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-image {
+    object-position: 66% center;
+  }
+
+  .hero-copy {
+    max-width: min(620px, calc(100vw - 32px));
+  }
 }
 
 .hero-media::before,
