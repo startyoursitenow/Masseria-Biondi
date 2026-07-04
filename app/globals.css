@@ -332,7 +332,7 @@ a {
 
 @media (min-width: 1024px) and (max-height: 900px) {
   .hero-content h1 {
-    font-size: clamp(3.25rem, 7.35vw, 8.05rem);
+    font-size: clamp(3.25rem, 6.95vw, 7.6rem);
   }
 }
 
