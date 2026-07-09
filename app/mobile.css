@@ -277,6 +277,11 @@
     height: 100dvh !important;
     min-height: 100vh !important;
     min-height: 100dvh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+    padding: 1rem !important;
     overflow: hidden !important;
   }
 
@@ -291,6 +296,7 @@
   }
 
   .hero-content {
+    width: 100% !important;
     height: 100vh !important;
     height: 100dvh !important;
     min-height: 0 !important;
@@ -298,8 +304,8 @@
     flex-direction: column !important;
     align-items: flex-start !important;
     justify-content: flex-end !important;
-    padding-top: 5.5rem !important;
-    padding-bottom: clamp(2rem, 7vh, 3.25rem) !important;
+    padding-top: 4.75rem !important;
+    padding-bottom: clamp(1.65rem, 5vh, 2.75rem) !important;
   }
 
   .hero-copy {
@@ -309,22 +315,38 @@
     margin-bottom: 0 !important;
   }
 
+  .hero-kicker {
+    font-size: 0.66rem !important;
+    line-height: 1.2 !important;
+  }
+
   .hero-copy h1,
   .hero-content h1 {
-    margin-top: 0.45rem !important;
-    margin-bottom: 0.65rem !important;
-    font-size: clamp(2.85rem, 14vw, 4.55rem) !important;
-    line-height: 0.92 !important;
+    max-width: 100% !important;
+    margin-top: 0.35rem !important;
+    margin-bottom: 0.45rem !important;
+    font-size: clamp(1.75rem, 8vw, 2.05rem) !important;
+    line-height: 1.02 !important;
   }
 
   .hero-copy p,
   .hero-content p {
     max-width: 100% !important;
-    font-size: clamp(1rem, 4.2vw, 1.18rem) !important;
-    line-height: 1.48 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.75rem !important;
+    font-size: clamp(0.92rem, 3.8vw, 1rem) !important;
+    line-height: 1.4 !important;
   }
 
   .hero-copy .pt-4 {
-    padding-top: 0.9rem !important;
+    gap: 0.45rem !important;
+    padding-top: 0.35rem !important;
+  }
+
+  .hero-copy .button-primary,
+  .hero-copy .button-secondary {
+    min-height: 40px !important;
+    padding-top: 0.55rem !important;
+    padding-bottom: 0.55rem !important;
   }
 }
