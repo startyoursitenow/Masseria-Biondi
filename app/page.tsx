@@ -200,11 +200,8 @@ export default function Home() {
     setIsMenuOpen((prev) => !prev);
   };
 
-  const handleMenuPointerDown = (event: React.PointerEvent<HTMLButtonElement>) => {
-    if (event.pointerType !== "mouse") {
-      event.preventDefault();
-      toggleMenu();
-    }
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   const handleTimedLink = (event: MouseEvent<HTMLAnchorElement>, href: string, target?: string) => {
@@ -345,7 +342,6 @@ export default function Home() {
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"
             onClick={toggleMenu}
-            onPointerDown={handleMenuPointerDown}
           >
             {isMenuOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
           </button>
@@ -358,7 +354,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
           >
-            <button type="button" className="mobile-menu-backdrop" aria-label="Chiudi menu" onClick={() => setIsMenuOpen(false)} />
+            <button type="button" className="mobile-menu-backdrop" aria-label="Chiudi menu" onClick={closeMenu} />
             <motion.nav
               id="mobile-navigation"
               aria-label="Navigazione mobile"
@@ -373,7 +369,7 @@ export default function Home() {
                   key={label}
                   href={href}
                   className="mobile-drawer-link"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={closeMenu}
                 >
                   {label}
                 </a>
@@ -382,7 +378,7 @@ export default function Home() {
               <a
                 href="#contatti"
                 className="mobile-drawer-cta"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={closeMenu}
               >
                 Vieni al punto vendita
               </a>
